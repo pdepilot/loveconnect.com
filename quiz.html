@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Our Quiz - SoulConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #ff4b91;
+            --primary-dark: #e83e8c;
+            --secondary: #6c63ff;
+            --dark: #2d2b55;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --online: #28a745;
+            --offline: #6c757d;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 101;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            z-index: 101;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin: 20px 0;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 24px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .mobile-auth-buttons .btn {
+            width: 200px;
+        }
+
+        /* Quiz Hero Section */
+        .quiz-hero {
+            background: linear-gradient(135deg, rgba(255, 75, 145, 0.9), rgba(108, 99, 255, 0.9)), url('https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .quiz-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .quiz-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Quiz Container */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .quiz-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .quiz-header h3 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .quiz-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: white;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .quiz-body {
+            padding: 40px;
+        }
+
+        .quiz-question {
+            margin-bottom: 40px;
+            display: none;
+        }
+
+        .quiz-question.active {
+            display: block;
+        }
+
+        .question-text {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: var(--light);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #f0f0f0;
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(255, 75, 145, 0.05);
+        }
+
+        .option input {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .option label {
+            cursor: pointer;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            border-top: 1px solid #eee;
+        }
+
+        .quiz-btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .quiz-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-prev {
+            background: #f0f0f0;
+            color: var(--dark);
+        }
+
+        .btn-prev:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-next:hover:not(:disabled) {
+            background: var(--primary-dark);
+        }
+
+        /* Quiz Results */
+        .quiz-results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .quiz-results.active {
+            display: block;
+        }
+
+        .results-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 40px;
+        }
+
+        .results-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .results-description {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .personality-type {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .personality-type h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .personality-type p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .results-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 30px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .quiz-hero h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .quiz-hero h1 {
+                font-size: 36px;
+            }
+            
+            .quiz-hero p {
+                font-size: 18px;
+            }
+            
+            .quiz-body {
+                padding: 30px;
+            }
+            
+            .question-text {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .quiz-hero {
+                padding: 60px 0;
+            }
+            
+            .quiz-hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .quiz-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .progress-bar {
+                width: 150px;
+            }
+            
+            .quiz-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .quiz-btn {
+                width: 100%;
+            }
+            
+            .results-actions {
+                flex-direction: column;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .quiz-hero {
+                padding: 50px 0;
+            }
+            
+            .quiz-hero h1 {
+                font-size: 28px;
+            }
+            
+            .quiz-section, .benefits {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .quiz-body {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 18px;
+            }
+            
+            .option {
+                padding: 12px 15px;
+            }
+            
+            .results-title {
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quiz-hero h1 {
+                font-size: 24px;
+            }
+            
+            .quiz-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .benefit-card {
+                padding: 20px;
+            }
+            
+            .footer-column h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-heart"></i>
+                    SoulConnect
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Log In</a>
+                    <a href="#" class="btn btn-primary">Sign Up Free</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">How It Works</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+        <div class="mobile-auth-buttons">
+            <a href="#" class="btn btn-outline">Log In</a>
+            <a href="#" class="btn btn-primary">Sign Up Free</a>
+        </div>
+    </div>
+
+    <!-- Quiz Hero Section -->
+    <section class="quiz-hero">
+        <div class="container">
+            <div class="quiz-hero-content">
+                <h1>Find Your Perfect Match</h1>
+                <p>Take our compatibility quiz to discover people who share your values, interests, and lifestyle.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compatibility Quiz</h2>
+                <p>Answer these questions to help us understand your personality and preferences</p>
+            </div>
+            
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>Personality & Preferences</h3>
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">1/5</div>
+                    </div>
+                </div>
+                
+                <div class="quiz-body">
+                    <!-- Question 1 -->
+                    <div class="quiz-question active" id="question1">
+                        <div class="question-text">What are you looking for in a relationship?</div>
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" id="q1a1" name="question1">
+                                <label for="q1a1">Long-term commitment</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1a2" name="question1">
+                                <label for="q1a2">Casual dating</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1a3" name="question1">
+                                <label for="q1a3">Friendship first</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q1a4" name="question1">
+                                <label for="q1a4">I'm not sure yet</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 2 -->
+                    <div class="quiz-question" id="question2">
+                        <div class="question-text">How important is shared religious or spiritual beliefs to you?</div>
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" id="q2a1" name="question2">
+                                <label for="q2a1">Very important</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2a2" name="question2">
+                                <label for="q2a2">Somewhat important</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2a3" name="question2">
+                                <label for="q2a3">Not very important</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q2a4" name="question2">
+                                <label for="q2a4">Not important at all</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 3 -->
+                    <div class="quiz-question" id="question3">
+                        <div class="question-text">How do you prefer to spend your weekends?</div>
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" id="q3a1" name="question3">
+                                <label for="q3a1">Outdoor activities and adventures</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3a2" name="question3">
+                                <label for="q3a2">Relaxing at home with a good book or movie</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3a3" name="question3">
+                                <label for="q3a3">Socializing with friends</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q3a4" name="question3">
+                                <label for="q3a4">Trying new restaurants or cultural events</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 4 -->
+                    <div class="quiz-question" id="question4">
+                        <div class="question-text">How important is physical attraction in a relationship?</div>
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" id="q4a1" name="question4">
+                                <label for="q4a1">Very important</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4a2" name="question4">
+                                <label for="q4a2">Somewhat important</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4a3" name="question4">
+                                <label for="q4a3">Not as important as personality</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q4a4" name="question4">
+                                <label for="q4a4">I don't have a strong preference</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 -->
+                    <div class="quiz-question" id="question5">
+                        <div class="question-text">What's your approach to conflict in relationships?</div>
+                        <div class="options-container">
+                            <div class="option">
+                                <input type="radio" id="q5a1" name="question5">
+                                <label for="q5a1">I address issues directly and immediately</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5a2" name="question5">
+                                <label for="q5a2">I need time to process before discussing</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5a3" name="question5">
+                                <label for="q5a3">I prefer to avoid conflict when possible</label>
+                            </div>
+                            <div class="option">
+                                <input type="radio" id="q5a4" name="question5">
+                                <label for="q5a4">I try to find compromise and common ground</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div class="quiz-results" id="quizResults">
+                        <div class="results-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h2 class="results-title">Quiz Complete!</h2>
+                        <p class="results-description">Based on your answers, we've identified your personality type and preferences. We'll use this information to find your perfect matches.</p>
+                        
+                        <div class="personality-type">
+                            <h4>Your Personality Type: The Adventurous Romantic</h4>
+                            <p>You value meaningful connections and shared experiences. You're looking for someone who can be both a partner in adventure and a source of emotional support. Your ideal match is someone who balances spontaneity with reliability.</p>
+                        </div>
+                        
+                        <div class="results-actions">
+                            <a href="matches.html" class="quiz-btn btn-primary">View Your Matches</a>
+                            <a href="index.html" class="quiz-btn btn-outline">Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-footer" id="quizFooter">
+                    <button class="quiz-btn btn-prev" id="prevBtn" disabled>Previous</button>
+                    <button class="quiz-btn btn-next" id="nextBtn">Next Question</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Take Our Quiz?</h2>
+                <p>Our compatibility quiz helps us understand you better to find more meaningful connections</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Personality Insights</h3>
+                    <p>Discover more about your own preferences and relationship style through our carefully designed questions.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Better Matches</h3>
+                    <p>Our algorithm uses your quiz responses to find people with compatible values, interests, and lifestyles.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Save Time</h3>
+                    <p>Skip the endless swiping and get straight to quality connections that have a higher chance of success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SoulConnect</h3>
+                    <p>Finding meaningful connections through intelligent matching and shared interests.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quiz.html">Take Quiz</a></li>
+                        <li><a href="matches.html">Matches</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <!-- <li><a href="#">Blog</a></li> -->
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Download Our App</h3>
+                    <p>Find love on the go with our mobile application.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                        <a href="#" class="btn btn-primary" style="margin-top: 10px; width: 100%;">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS .
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Quiz functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const questions = document.querySelectorAll('.quiz-question');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const quizResults = document.getElementById('quizResults');
+            const quizFooter = document.getElementById('quizFooter');
+            const options = document.querySelectorAll('.option');
+            
+            let currentQuestion = 0;
+            const totalQuestions = questions.length;
+            
+            // Hamburger menu functionality
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                });
+            });
+            
+            // Option selection
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    radio.checked = true;
+                    
+                    // Remove selected class from all options in this question
+                    const question = this.closest('.quiz-question');
+                    const allOptions = question.querySelectorAll('.option');
+                    allOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Enable next button if an option is selected
+                    if (currentQuestion < totalQuestions - 1) {
+                        nextBtn.disabled = false;
+                    } else {
+                        nextBtn.textContent = 'See Results';
+                        nextBtn.disabled = false;
+                    }
+                });
+            });
+            
+            // Update progress
+            function updateProgress() {
+                const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+                progressFill.style.width = `${progress}%`;
+                progressText.textContent = `${currentQuestion + 1}/${totalQuestions}`;
+            }
+            
+            // Show current question
+            function showQuestion(index) {
+                questions.forEach((question, i) => {
+                    if (i === index) {
+                        question.classList.add('active');
+                    } else {
+                        question.classList.remove('active');
+                    }
+                });
+                
+                // Update button states
+                prevBtn.disabled = index === 0;
+                
+                // Check if current question has an answer selected
+                const currentOptions = questions[index].querySelectorAll('.option');
+                let hasSelection = false;
+                currentOptions.forEach(option => {
+                    if (option.querySelector('input').checked) {
+                        hasSelection = true;
+                    }
+                });
+                
+                if (index === totalQuestions - 1) {
+                    nextBtn.textContent = 'See Results';
+                    nextBtn.disabled = !hasSelection;
+                } else {
+                    nextBtn.textContent = 'Next Question';
+                    nextBtn.disabled = !hasSelection;
+                }
+                
+                updateProgress();
+            }
+            
+            // Next button click
+            nextBtn.addEventListener('click', function() {
+                if (currentQuestion < totalQuestions - 1) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                } else {
+                    // Show results
+                    questions.forEach(question => question.style.display = 'none');
+                    quizResults.classList.add('active');
+                    quizFooter.style.display = 'none';
+                    document.querySelector('.quiz-header').style.display = 'none';
+                }
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', function() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    showQuestion(currentQuestion);
+                }
+            });
+            
+            // Initialize first question
+            showQuestion(currentQuestion);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Matches - SoulConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #ff4b91;
+            --primary-dark: #e83e8c;
+            --secondary: #6c63ff;
+            --dark: #2d2b55;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --danger: #dc3545;
+            --online: #28a745;
+            --offline: #6c757d;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .sidebar-logo i {
+            margin-right: 10px;
+            font-size: 26px;
+        }
+
+        .sidebar-close {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: #fff5f9;
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: #fff5f9;
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Overlay for mobile sidebar */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+            width: calc(100% - var(--sidebar-width));
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Matching Interface */
+        .matching-interface {
+            display: flex;
+            gap: 30px;
+            height: calc(100vh - 120px);
+            width: 100%;
+        }
+
+        /* Filters Panel */
+        .filters-panel {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filters-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .reset-filters {
+            color: var(--primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .range-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-option {
+            padding: 8px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-option:hover {
+            background: #e0e0e0;
+        }
+
+        .filter-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .distance-slider {
+            width: 100%;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .distance-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Card Stack */
+        .card-stack-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 400px;
+            height: 600px;
+            max-width: 90vw;
+            max-height: 70vh;
+        }
+
+        .profile-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            transition: transform 0.3s, opacity 0.3s;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .profile-card:active {
+            cursor: grabbing;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 70%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .profile-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .card-actions {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .card-action-btn.like {
+            color: var(--success);
+        }
+
+        .card-action-btn.like:hover {
+            background: var(--success);
+            color: white;
+        }
+
+        .card-action-btn.pass {
+            color: var(--danger);
+        }
+
+        .card-action-btn.pass:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .card-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .card-age {
+            font-size: 20px;
+            color: var(--gray);
+        }
+
+        .card-distance {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .card-bio {
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .interest-tag {
+            background: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--dark);
+        }
+
+        .swipe-indicator {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            padding: 10px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .swipe-like {
+            color: var(--success);
+            background: rgba(40, 167, 69, 0.1);
+            border: 2px solid var(--success);
+        }
+
+        .swipe-pass {
+            color: var(--danger);
+            background: rgba(220, 53, 69, 0.1);
+            border: 2px solid var(--danger);
+        }
+
+        /* Match Modal */
+        .match-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .match-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .match-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s;
+        }
+
+        .match-modal.active .match-content {
+            transform: scale(1);
+        }
+
+        .match-heart {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        .match-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .match-text {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .match-users {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .match-user {
+            text-align: center;
+        }
+
+        .match-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--primary);
+            margin: 0 auto 10px;
+        }
+
+        .match-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .match-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .match-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .empty-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .empty-text {
+            margin-bottom: 30px;
+        }
+
+        /* Menu Toggle for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Responsive Design - Mobile First Approach */
+        @media (max-width: 1200px) {
+            .matching-interface {
+                gap: 20px;
+            }
+            
+            .filters-panel {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .sidebar-close {
+                display: block;
+            }
+
+            .matching-interface {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .filters-panel {
+                width: 100%;
+                order: 2;
+            }
+
+            .card-stack-container {
+                order: 1;
+                margin-bottom: 30px;
+                min-height: 500px;
+            }
+
+            .card-stack {
+                width: 350px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 15px;
+            }
+            
+            .top-bar {
+                flex-wrap: wrap;
+            }
+            
+            .page-title {
+                font-size: 24px;
+            }
+            
+            .card-stack {
+                width: 320px;
+                height: 480px;
+            }
+            
+            .match-content {
+                padding: 30px 20px;
+            }
+            
+            .match-users {
+                gap: 20px;
+            }
+            
+            .match-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .match-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .card-stack {
+                width: 300px;
+                height: 450px;
+            }
+            
+            .card-name {
+                font-size: 22px;
+            }
+            
+            .card-age {
+                font-size: 18px;
+            }
+            
+            .card-bio {
+                font-size: 14px;
+            }
+            
+            .card-action-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .card-stack {
+                width: 280px;
+                height: 420px;
+            }
+            
+            .card-info {
+                padding: 15px;
+            }
+            
+            .card-name {
+                font-size: 20px;
+            }
+            
+            .card-age {
+                font-size: 18px;
+            }
+            
+            .match-content {
+                padding: 20px 15px;
+            }
+            
+            .match-title {
+                font-size: 24px;
+            }
+            
+            .match-text {
+                font-size: 16px;
+            }
+            
+            .match-users {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .match-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 10px;
+            }
+            
+            .card-stack {
+                width: 260px;
+                height: 400px;
+            }
+            
+            .filters-panel {
+                padding: 20px;
+            }
+            
+            .filter-group {
+                margin-bottom: 20px;
+            }
+            
+            .user-avatar {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .page-title {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-stack {
+                width: 240px;
+                height: 380px;
+            }
+            
+            .card-action-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .top-bar {
+                gap: 10px;
+            }
+            
+            .page-title {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .card-stack {
+                width: 220px;
+                height: 360px;
+            }
+            
+            .card-name {
+                font-size: 18px;
+            }
+            
+            .card-age {
+                font-size: 16px;
+            }
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes swipeRight {
+            0% { transform: translateX(0) rotate(0); }
+            100% { transform: translateX(200px) rotate(20deg); opacity: 0; }
+        }
+
+        @keyframes swipeLeft {
+            0% { transform: translateX(0) rotate(0); }
+            100% { transform: translateX(-200px) rotate(-20deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-heart"></i>
+                    SoulConnect
+                </div>
+                <button class="sidebar-close" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="sidebar-nav">
+                <a href="dash.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="discover.html" class="nav-item active">
+                    <i class="fas fa-user-friends"></i>
+                    Discover
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    Matches
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    Messages
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </a>
+                <a href="profile.html" class="nav-item">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Discover Matches</h1>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Matching Interface -->
+            <div class="matching-interface">
+                <!-- Filters Panel -->
+                <div class="filters-panel">
+                    <div class="filters-header">
+                        <h3 class="filters-title">Filters</h3>
+                        <button class="reset-filters">Reset</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Age Range</label>
+                        <div class="range-values">
+                            <span>18</span>
+                            <span>60+</span>
+                        </div>
+                        <input type="range" class="distance-slider" min="18" max="60" value="24" id="ageMin">
+                        <input type="range" class="distance-slider" min="18" max="60" value="35" id="ageMax">
+                        <div class="range-values">
+                            <span id="ageMinValue">24</span>
+                            <span id="ageMaxValue">35</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Maximum Distance</label>
+                        <input type="range" class="distance-slider" min="1" max="100" value="25" id="distance">
+                        <div class="range-values">
+                            <span>1 mile</span>
+                            <span id="distanceValue">25 miles</span>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Gender</label>
+                        <div class="filter-options">
+                            <div class="filter-option active">Women</div>
+                            <div class="filter-option">Men</div>
+                            <div class="filter-option">Everyone</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Relationship Goals</label>
+                        <div class="filter-options">
+                            <div class="filter-option active">Long-term</div>
+                            <div class="filter-option">Casual</div>
+                            <div class="filter-option">Friendship</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Interests</label>
+                        <div class="filter-options">
+                            <div class="filter-option">Travel</div>
+                            <div class="filter-option active">Photography</div>
+                            <div class="filter-option">Music</div>
+                            <div class="filter-option">Fitness</div>
+                            <div class="filter-option">Food</div>
+                            <div class="filter-option">Art</div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        Apply Filters
+                    </button>
+                </div>
+
+                <!-- Card Stack -->
+                <div class="card-stack-container">
+                    <div class="card-stack" id="cardStack">
+                        <!-- Cards will be dynamically added here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <div class="empty-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3 class="empty-title">No more profiles to show</h3>
+                        <p class="empty-text">We've run out of potential matches in your area. Try adjusting your filters or check back later!</p>
+                        <button class="btn btn-primary" onclick="resetCards()">
+                            Reset Cards
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Modal -->
+    <div class="match-modal" id="matchModal">
+        <div class="match-content">
+            <div class="match-heart">
+                <i class="fas fa-heart"></i>
+            </div>
+            <h2 class="match-title">It's a Match!</h2>
+            <p class="match-text">You and Sarah have liked each other. Start a conversation now!</p>
+            
+            <div class="match-users">
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Your Avatar">
+                    </div>
+                    <div class="match-name">You</div>
+                </div>
+                <div class="match-user">
+                    <div class="match-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Match Avatar">
+                    </div>
+                    <div class="match-name">Sarah</div>
+                </div>
+            </div>
+            
+            <div class="match-actions">
+                <button class="btn btn-outline" onclick="closeMatchModal()">
+                    Keep Swiping
+                </button>
+                <button class="btn btn-primary">
+                    Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample profile data
+        const profiles = [
+            {
+                id: 1,
+                name: "Sarah",
+                age: 26,
+                distance: 3,
+                bio: "Adventure seeker and coffee enthusiast. Love hiking, photography, and trying new restaurants.",
+                image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                interests: ["Travel", "Photography", "Coffee", "Hiking"],
+                compatibility: 92
+            },
+            {
+                id: 2,
+                name: "Emma",
+                age: 29,
+                distance: 8,
+                bio: "Music lover and amateur chef. Always looking for new concert buddies and food adventures.",
+                image: "https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                interests: ["Music", "Cooking", "Dancing", "Movies"],
+                compatibility: 87
+            },
+            {
+                id: 3,
+                name: "Jessica",
+                age: 25,
+                distance: 12,
+                bio: "Bookworm and yoga instructor. Passionate about mindfulness and personal growth.",
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                interests: ["Reading", "Yoga", "Meditation", "Art"],
+                compatibility: 78
+            },
+            {
+                id: 4,
+                name: "Mia",
+                age: 27,
+                distance: 5,
+                bio: "Digital artist and gamer. Love creating art and exploring virtual worlds.",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+                interests: ["Art", "Gaming", "Technology", "Design"],
+                compatibility: 85
+            }
+        ];
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        menuToggle.addEventListener('click', toggleSidebar);
+        sidebarClose.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+        
+        // Close sidebar when clicking on a nav item on mobile
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        // Initialize card stack
+        const cardStack = document.getElementById('cardStack');
+        const emptyState = document.getElementById('emptyState');
+        let currentIndex = 0;
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        // Create profile cards
+        function createCards() {
+            cardStack.innerHTML = '';
+            currentIndex = 0;
+            
+            if (profiles.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            profiles.forEach((profile, index) => {
+                const card = document.createElement('div');
+                card.className = 'profile-card';
+                card.style.zIndex = profiles.length - index;
+                card.style.transform = `translateY(${index * 5}px) scale(${1 - index * 0.05})`;
+                
+                card.innerHTML = `
+                    <div class="swipe-indicator swipe-like">LIKE</div>
+                    <div class="swipe-indicator swipe-pass">PASS</div>
+                    <div class="card-image">
+                        <img src="${profile.image}" alt="${profile.name}">
+                        <div class="card-badge">${profile.compatibility}% Match</div>
+                        <div class="card-actions">
+                            <button class="card-action-btn pass" onclick="swipeLeft(${profile.id})">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="card-action-btn like" onclick="swipeRight(${profile.id})">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-info">
+                        <div class="card-header">
+                            <div class="card-name">${profile.name}</div>
+                            <div class="card-age">${profile.age}</div>
+                        </div>
+                        <div class="card-distance">
+                            <i class="fas fa-map-marker-alt"></i>
+                            ${profile.distance} miles away
+                        </div>
+                        <p class="card-bio">${profile.bio}</p>
+                        <div class="card-interests">
+                            ${profile.interests.map(interest => 
+                                `<span class="interest-tag">${interest}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                cardStack.appendChild(card);
+                
+                // Add drag events
+                card.addEventListener('mousedown', startDrag);
+                card.addEventListener('touchstart', startDrag);
+            });
+        }
+
+        // Drag functionality
+        function startDrag(e) {
+            if (currentIndex !== Array.from(cardStack.children).indexOf(this)) return;
+            
+            isDragging = true;
+            startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+            this.style.transition = 'none';
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('touchmove', drag);
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchend', endDrag);
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            
+            const card = cardStack.children[currentIndex];
+            currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+            const deltaX = currentX - startX;
+            const rotation = deltaX * 0.1;
+            
+            card.style.transform = `translateX(${deltaX}px) rotate(${rotation}deg) translateY(${currentIndex * 5}px) scale(${1 - currentIndex * 0.05})`;
+            
+            // Show swipe indicators
+            const likeIndicator = card.querySelector('.swipe-like');
+            const passIndicator = card.querySelector('.swipe-pass');
+            
+            if (deltaX > 50) {
+                likeIndicator.style.opacity = Math.min(deltaX / 100, 1);
+                passIndicator.style.opacity = 0;
+            } else if (deltaX < -50) {
+                passIndicator.style.opacity = Math.min(-deltaX / 100, 1);
+                likeIndicator.style.opacity = 0;
+            } else {
+                likeIndicator.style.opacity = 0;
+                passIndicator.style.opacity = 0;
+            }
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            const card = cardStack.children[currentIndex];
+            const deltaX = currentX - startX;
+            
+            document.removeEventListener('mousemove', drag);
+            document.removeEventListener('touchmove', drag);
+            document.removeEventListener('mouseup', endDrag);
+            document.removeEventListener('touchend', endDrag);
+            
+            card.style.transition = 'transform 0.3s, opacity 0.3s';
+            
+            if (Math.abs(deltaX) > 100) {
+                if (deltaX > 0) {
+                    swipeRight(profiles[currentIndex].id);
+                } else {
+                    swipeLeft(profiles[currentIndex].id);
+                }
+            } else {
+                // Return to center
+                card.style.transform = `translateX(0) rotate(0) translateY(${currentIndex * 5}px) scale(${1 - currentIndex * 0.05})`;
+            }
+        }
+
+        // Swipe actions
+        function swipeRight(profileId) {
+            const card = cardStack.children[currentIndex];
+            card.style.animation = 'swipeRight 0.5s forwards';
+            
+            setTimeout(() => {
+                currentIndex++;
+                updateCardPositions();
+                
+                // Show match modal for demonstration (random 30% chance)
+                if (Math.random() < 0.3) {
+                    showMatchModal();
+                }
+            }, 300);
+        }
+
+        function swipeLeft(profileId) {
+            const card = cardStack.children[currentIndex];
+            card.style.animation = 'swipeLeft 0.5s forwards';
+            
+            setTimeout(() => {
+                currentIndex++;
+                updateCardPositions();
+            }, 300);
+        }
+
+        function updateCardPositions() {
+            const cards = cardStack.children;
+            
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                card.style.transition = 'transform 0.3s';
+                
+                if (i < currentIndex) {
+                    card.style.display = 'none';
+                } else {
+                    card.style.zIndex = cards.length - i;
+                    card.style.transform = `translateY(${(i - currentIndex) * 5}px) scale(${1 - (i - currentIndex) * 0.05})`;
+                    card.style.display = 'block';
+                }
+            }
+            
+            if (currentIndex >= profiles.length) {
+                emptyState.style.display = 'block';
+            }
+        }
+
+        // Match modal
+        function showMatchModal() {
+            document.getElementById('matchModal').classList.add('active');
+        }
+
+        function closeMatchModal() {
+            document.getElementById('matchModal').classList.remove('active');
+        }
+
+        // Reset cards
+        function resetCards() {
+            createCards();
+        }
+
+        // Filter functionality
+        document.getElementById('ageMin').addEventListener('input', function() {
+            document.getElementById('ageMinValue').textContent = this.value;
+        });
+
+        document.getElementById('ageMax').addEventListener('input', function() {
+            document.getElementById('ageMaxValue').textContent = this.value;
+        });
+
+        document.getElementById('distance').addEventListener('input', function() {
+            document.getElementById('distanceValue').textContent = this.value + ' miles';
+        });
+
+        // Filter option selection
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.parentElement.classList.contains('filter-options')) {
+                    // Single selection for gender
+                    if (this.parentElement.querySelector('.filter-label').textContent === 'Gender') {
+                        this.parentElement.querySelectorAll('.filter-option').forEach(opt => {
+                            opt.classList.remove('active');
+                        });
+                    }
+                    this.classList.toggle('active');
+                }
+            });
+        });
+
+        // Close sidebar on window resize if it's open and we're no longer in mobile view
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024 && sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+
+        // Initialize
+        createCards();
+    </script>
+</body>
+</html>

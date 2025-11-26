@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - SoulConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #ff4b91;
+            --primary-dark: #e83e8c;
+            --secondary: #6c63ff;
+            --dark: #2d2b55;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --online: #28a745;
+            --offline: #6c757d;
+            --sidebar-width: 260px;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .sidebar-logo i {
+            margin-right: 10px;
+            font-size: 26px;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: #fff5f9;
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-item.active {
+            background: #fff5f9;
+            color: var(--primary);
+            border-left-color: var(--primary);
+        }
+
+        .nav-item i {
+            margin-right: 12px;
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 20px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Profile Editor */
+        .profile-editor {
+            display: flex;
+            gap: 30px;
+        }
+
+        .editor-sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .editor-main {
+            flex: 1;
+        }
+
+        .progress-section {
+            margin-bottom: 30px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .progress-percent {
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+            width: 75%;
+        }
+
+        .edit-steps {
+            list-style: none;
+        }
+
+        .edit-step {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .edit-step:last-child {
+            border-bottom: none;
+        }
+
+        .edit-step:hover {
+            color: var(--primary);
+        }
+
+        .edit-step.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 14px;
+        }
+
+        .edit-step.active .step-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Editor Sections */
+        .editor-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        .editor-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 75, 145, 0.2);
+        }
+
+        .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Photo Upload */
+        .photo-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .photo-upload-item {
+            aspect-ratio: 3/4;
+            border: 2px dashed #e1e1e1;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-upload-item:hover {
+            border-color: var(--primary);
+        }
+
+        .photo-upload-item.has-photo {
+            border-style: solid;
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .photo-upload-icon {
+            font-size: 30px;
+            color: #e1e1e1;
+            margin-bottom: 10px;
+        }
+
+        .photo-upload-text {
+            font-size: 12px;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .photo-actions {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+        }
+
+        .photo-upload-item.has-photo .photo-actions {
+            display: block;
+        }
+
+        .photo-action-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            transition: all 0.3s;
+        }
+
+        .photo-action-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Interest Tags */
+        .interest-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .interest-tag {
+            background: #f0f0f0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .interest-tag:hover {
+            background: #e0e0e0;
+        }
+
+        .interest-tag.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        .interest-tag i {
+            font-size: 12px;
+        }
+
+        /* Preference Sliders */
+        .preference-slider {
+            margin-bottom: 25px;
+        }
+
+        .slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .slider-label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .slider-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+
+            .profile-editor {
+                flex-direction: column;
+            }
+
+            .editor-sidebar {
+                width: 100%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .photo-upload-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Menu Toggle for Mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        @media (max-width: 1024px) {
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-heart"></i>
+                    SoulConnect
+                </div>
+            </div>
+            <div class="sidebar-nav">
+                <a href="dash.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="discover.html" class="nav-item">
+                    <i class="fas fa-user-friends"></i>
+                    Discover
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    Matches
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <i class="fas fa-comments"></i>
+                    Messages
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </a>
+                <a href="profile.html" class="nav-item active">
+                    <i class="fas fa-user"></i>
+                    My Profile
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="page-title">Edit Profile</h1>
+                <div class="user-menu">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Editor -->
+            <div class="profile-editor">
+                <!-- Editor Sidebar -->
+                <div class="editor-sidebar">
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <div class="progress-title">Profile Completion</div>
+                            <div class="progress-percent">75%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <ul class="edit-steps">
+                        <li class="edit-step active" data-section="basic-info">
+                            <div class="step-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            Basic Information
+                        </li>
+                        <li class="edit-step" data-section="photos">
+                            <div class="step-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            Photos
+                        </li>
+                        <li class="edit-step" data-section="about">
+                            <div class="step-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            About Me
+                        </li>
+                        <li class="edit-step" data-section="interests">
+                            <div class="step-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            Interests
+                        </li>
+                        <li class="edit-step" data-section="preferences">
+                            <div class="step-icon">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                            Preferences
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Editor Main Content -->
+                <div class="editor-main">
+                    <!-- Basic Information Section -->
+                    <div class="editor-section active" id="basic-info">
+                        <div class="section-header">
+                            <h2 class="section-title">Basic Information</h2>
+                            <p class="section-description">Tell us about yourself - this information helps us find better matches for you.</p>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" value="Alex">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" value="Johnson">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Age</label>
+                                <input type="number" class="form-control" value="28" min="18" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Gender</label>
+                                <select class="form-control form-select">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Non-binary</option>
+                                    <option>Prefer not to say</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" value="New York, NY">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Relationship Status</label>
+                                <select class="form-control form-select">
+                                    <option>Single</option>
+                                    <option>Divorced</option>
+                                    <option>Widowed</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Occupation</label>
+                                <input type="text" class="form-control" value="Photographer">
+                            </div>
+                            <div class="form-group full-width">
+                                <label class="form-label">Education</label>
+                                <input type="text" class="form-control" value="Bachelor's Degree in Arts">
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <!-- Photos Section -->
+                    <div class="editor-section" id="photos">
+                        <div class="section-header">
+                            <h2 class="section-title">Profile Photos</h2>
+                            <p class="section-description">Add up to 6 photos. Profiles with more photos get more attention!</p>
+                        </div>
+
+                        <div class="photo-upload-grid">
+                            <!-- Photo 1 -->
+                            <div class="photo-upload-item has-photo">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Photo" class="photo-preview" style="display: block;">
+                                <div class="photo-upload-icon" style="display: none;">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="photo-upload-text" style="display: none;">Add Photo</div>
+                                <div class="photo-actions">
+                                    <button class="photo-action-btn">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                    <button class="photo-action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Photo 2 -->
+                            <div class="photo-upload-item has-photo">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Profile Photo" class="photo-preview" style="display: block;">
+                                <div class="photo-actions">
+                                    <button class="photo-action-btn">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                    <button class="photo-action-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Empty Photo Slots -->
+                            <div class="photo-upload-item">
+                                <div class="photo-upload-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="photo-upload-text">Add Photo</div>
+                            </div>
+                            <div class="photo-upload-item">
+                                <div class="photo-upload-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="photo-upload-text">Add Photo</div>
+                            </div>
+                            <div class="photo-upload-item">
+                                <div class="photo-upload-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="photo-upload-text">Add Photo</div>
+                            </div>
+                            <div class="photo-upload-item">
+                                <div class="photo-upload-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="photo-upload-text">Add Photo</div>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <!-- About Me Section -->
+                    <div class="editor-section" id="about">
+                        <div class="section-header">
+                            <h2 class="section-title">About Me</h2>
+                            <p class="section-description">Share your story, passions, and what you're looking for in a partner.</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Headline</label>
+                            <input type="text" class="form-control" value="Adventure-seeking photographer looking for meaningful connections">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">About Me</label>
+                            <textarea class="form-control">I'm a passionate photographer who loves capturing life's beautiful moments. When I'm not behind the camera, you can find me hiking in the mountains, trying new coffee shops, or planning my next travel adventure. I value honesty, kindness, and a good sense of humor. Looking for someone to share adventures with and build a genuine connection.</textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">What I'm Looking For</label>
+                            <textarea class="form-control">Someone who's passionate about life, enjoys deep conversations as much as silly ones, and isn't afraid to be themselves. Ideally, you love exploring new places, appreciate good food, and believe that the best memories are made when we step outside our comfort zones.</textarea>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <!-- Interests Section -->
+                    <div class="editor-section" id="interests">
+                        <div class="section-header">
+                            <h2 class="section-title">My Interests</h2>
+                            <p class="section-description">Select interests that describe you - this helps us find people with similar passions.</p>
+                        </div>
+
+                        <div class="interest-tags">
+                            <div class="interest-tag selected">
+                                Photography
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="interest-tag selected">
+                                Travel
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="interest-tag selected">
+                                Hiking
+                                <i class="fas fa-times"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Cooking
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Music
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Art
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Reading
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Fitness
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Movies
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Coffee
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Technology
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="interest-tag">
+                                Gardening
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Add Custom Interest</label>
+                            <input type="text" class="form-control" placeholder="Enter a new interest">
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+
+                    <!-- Preferences Section -->
+                    <div class="editor-section" id="preferences">
+                        <div class="section-header">
+                            <h2 class="section-title">Match Preferences</h2>
+                            <p class="section-description">Set your preferences to help us find your perfect matches.</p>
+                        </div>
+
+                        <div class="preference-slider">
+                            <div class="slider-header">
+                                <div class="slider-label">Age Range</div>
+                                <div class="slider-value">24 - 35</div>
+                            </div>
+                            <input type="range" class="slider" min="18" max="60" value="24" id="ageMin">
+                            <input type="range" class="slider" min="18" max="60" value="35" id="ageMax">
+                        </div>
+
+                        <div class="preference-slider">
+                            <div class="slider-header">
+                                <div class="slider-label">Maximum Distance</div>
+                                <div class="slider-value">50 miles</div>
+                            </div>
+                            <input type="range" class="slider" min="5" max="100" value="50" id="distance">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Looking For</label>
+                            <select class="form-control form-select">
+                                <option>Women</option>
+                                <option>Men</option>
+                                <option>Everyone</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Relationship Goals</label>
+                            <select class="form-control form-select">
+                                <option>Long-term relationship</option>
+                                <option>Casual dating</option>
+                                <option>Marriage</option>
+                                <option>Not sure yet</option>
+                            </select>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-outline">Cancel</button>
+                            <button class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+        });
+
+        // Section navigation
+        const editSteps = document.querySelectorAll('.edit-step');
+        const editorSections = document.querySelectorAll('.editor-section');
+
+        editSteps.forEach(step => {
+            step.addEventListener('click', function() {
+                const targetSection = this.getAttribute('data-section');
+                
+                // Update active step
+                editSteps.forEach(s => s.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show target section
+                editorSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === targetSection) {
+                        section.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Interest tag selection
+        const interestTags = document.querySelectorAll('.interest-tag');
+        interestTags.forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                
+                const icon = this.querySelector('i');
+                if (this.classList.contains('selected')) {
+                    icon.className = 'fas fa-times';
+                } else {
+                    icon.className = 'fas fa-plus';
+                }
+            });
+        });
+
+        // Photo upload simulation
+        const photoItems = document.querySelectorAll('.photo-upload-item:not(.has-photo)');
+        photoItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // In a real app, this would open a file picker
+                // For demo, we'll just mark it as having a photo
+                this.classList.add('has-photo');
+                
+                const icon = this.querySelector('.photo-upload-icon');
+                const text = this.querySelector('.photo-upload-text');
+                const preview = this.querySelector('.photo-preview');
+                
+                if (icon) icon.style.display = 'none';
+                if (text) text.style.display = 'none';
+                if (preview) {
+                    preview.style.display = 'block';
+                    preview.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80';
+                }
+                
+                // Create actions if they don't exist
+                if (!this.querySelector('.photo-actions')) {
+                    const actions = document.createElement('div');
+                    actions.className = 'photo-actions';
+                    actions.innerHTML = `
+                        <button class="photo-action-btn">
+                            <i class="fas fa-star"></i>
+                        </button>
+                        <button class="photo-action-btn">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    this.appendChild(actions);
+                }
+            });
+        });
+
+        // Photo actions
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.photo-action-btn')) {
+                const btn = e.target.closest('.photo-action-btn');
+                const item = btn.closest('.photo-upload-item');
+                
+                if (btn.querySelector('.fa-trash')) {
+                    // Remove photo
+                    item.classList.remove('has-photo');
+                    const preview = item.querySelector('.photo-preview');
+                    const icon = item.querySelector('.photo-upload-icon');
+                    const text = item.querySelector('.photo-upload-text');
+                    
+                    if (preview) preview.style.display = 'none';
+                    if (icon) icon.style.display = 'flex';
+                    if (text) text.style.display = 'block';
+                    
+                    item.querySelector('.photo-actions').remove();
+                } else if (btn.querySelector('.fa-star')) {
+                    // Set as primary photo
+                    document.querySelectorAll('.photo-action-btn .fa-star').forEach(star => {
+                        star.style.color = 'white';
+                    });
+                    btn.querySelector('.fa-star').style.color = 'gold';
+                }
+            }
+        });
+
+        // Slider value updates
+        const sliders = document.querySelectorAll('.slider');
+        sliders.forEach(slider => {
+            slider.addEventListener('input', function() {
+                if (this.id === 'ageMin' || this.id === 'ageMax') {
+                    const min = document.getElementById('ageMin').value;
+                    const max = document.getElementById('ageMax').value;
+                    document.querySelector('.slider-value').textContent = `${min} - ${max}`;
+                } else if (this.id === 'distance') {
+                    document.querySelectorAll('.slider-value')[1].textContent = `${this.value} miles`;
+                }
+            });
+        });
+
+        // Form submission
+        const saveButtons = document.querySelectorAll('.btn-primary');
+        saveButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Profile changes saved successfully!');
+                // In a real app, this would submit the form data
+            });
+        });
+    </script>
+</body>
+</html>

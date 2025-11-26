@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Matches - SoulConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #ff4b91;
+            --primary-dark: #e83e8c;
+            --secondary: #6c63ff;
+            --dark: #2d2b55;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+            --online: #28a745;
+            --offline: #6c757d;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 101;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            z-index: 101;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-links li {
+            margin: 20px 0;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 24px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .mobile-auth-buttons .btn {
+            width: 200px;
+        }
+
+        /* Matches Hero Section */
+        .matches-hero {
+            background: linear-gradient(135deg, rgba(255, 75, 145, 0.9), rgba(108, 99, 255, 0.9)), url('https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .matches-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .matches-hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .matches-hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Matches Section */
+        .matches-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filters */
+        .filters {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-header h3 {
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .filter-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .filter-range {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .range-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .filter-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* Matches Grid */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .match-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .match-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .match-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .match-card:hover .match-image img {
+            transform: scale(1.05);
+        }
+
+        .match-online {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            background: var(--online);
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .match-offline {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            background: var(--offline);
+            border: 2px solid white;
+            border-radius: 50%;
+        }
+
+        .match-actions {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .match-action {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: var(--dark);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-action:hover {
+            transform: scale(1.1);
+        }
+
+        .match-action.like:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .match-action.dislike:hover {
+            background: #ff4757;
+            color: white;
+        }
+
+        .match-info {
+            padding: 20px;
+        }
+
+        .match-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .match-age {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .match-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .match-bio {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .match-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .match-tag {
+            background: rgba(255, 75, 145, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .match-compatibility {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .compatibility-score {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .compatibility-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .compatibility-bar {
+            flex: 1;
+            height: 6px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .compatibility-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* No Matches State */
+        .no-matches {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .no-matches-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--gray);
+            font-size: 40px;
+        }
+
+        .no-matches h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .no-matches p {
+            color: var(--gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: background 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .matches-hero h1 {
+                font-size: 38px;
+            }
+            
+            .matches-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 900px) {
+            .matches-hero h1 {
+                font-size: 32px;
+            }
+            
+            .matches-hero p {
+                font-size: 16px;
+            }
+            
+            .filter-options {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .matches-hero {
+                padding: 50px 0;
+            }
+            
+            .matches-hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .filter-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .filter-actions {
+                justify-content: flex-start;
+            }
+            
+            .matches-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .matches-hero {
+                padding: 40px 0;
+            }
+            
+            .matches-section {
+                padding: 40px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .filters {
+                padding: 20px;
+            }
+            
+            .filter-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .matches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .match-image {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .matches-hero h1 {
+                font-size: 24px;
+            }
+            
+            .match-info {
+                padding: 15px;
+            }
+            
+            .match-name {
+                font-size: 18px;
+            }
+            
+            .footer-column h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <i class="fas fa-heart"></i>
+                    SoulConnect
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="quiz.html">Take Quiz</a></li>
+                    <li><a href="#" class="active">Matches</a></li>
+                    <li><a href="#">Messages</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline">Upgrade</a>
+                    <a href="#" class="btn btn-primary">My Profile</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="quiz.html">Take Quiz</a></li>
+            <li><a href="#" class="active">Matches</a></li>
+            <li><a href="#">Messages</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+        <div class="mobile-auth-buttons">
+            <a href="#" class="btn btn-outline">Upgrade</a>
+            <a href="#" class="btn btn-primary">My Profile</a>
+        </div>
+    </div>
+
+    <!-- Matches Hero Section -->
+    <section class="matches-hero">
+        <div class="container">
+            <div class="matches-hero-content">
+                <h1>Your Perfect Matches</h1>
+                <p>Based on your quiz results and preferences, we've found these amazing people who share your interests and values.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matches Section -->
+    <section class="matches-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compatible Profiles</h2>
+                <p>Connect with people who share your interests and relationship goals</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-header">
+                    <h3>Filter Matches</h3>
+                    <a href="#" class="btn btn-outline">Reset Filters</a>
+                </div>
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="location">Location</label>
+                        <select id="location" class="filter-select">
+                            <option value="">Any Location</option>
+                            <option value="local">Within 10 miles</option>
+                            <option value="city">Within my city</option>
+                            <option value="state">Within my state</option>
+                            <option value="country">Anywhere in country</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="age">Age Range</label>
+                        <div class="filter-range">
+                            <span class="range-value" id="ageMin">22</span>
+                            <input type="range" id="age" min="18" max="65" value="22" class="filter-range-input">
+                            <span class="range-value" id="ageMax">35</span>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label for="interests">Shared Interests</label>
+                        <select id="interests" class="filter-select">
+                            <option value="">Any Interests</option>
+                            <option value="travel">Travel</option>
+                            <option value="fitness">Fitness</option>
+                            <option value="arts">Arts & Culture</option>
+                            <option value="food">Food & Dining</option>
+                            <option value="outdoors">Outdoor Activities</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="compatibility">Min. Compatibility</label>
+                        <select id="compatibility" class="filter-select">
+                            <option value="70">70%+</option>
+                            <option value="80">80%+</option>
+                            <option value="90" selected>90%+</option>
+                            <option value="95">95%+</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <a href="#" class="btn btn-outline">Save Filters</a>
+                    <a href="#" class="btn btn-primary">Apply Filters</a>
+                </div>
+            </div>
+            
+            <!-- Matches Grid -->
+            <div class="matches-grid" id="matchesGrid">
+                <!-- Match Card 1 -->
+                <div class="match-card">
+                    <div class="match-image">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Sarah Johnson">
+                        <div class="match-online"></div>
+                        <div class="match-actions">
+                            <button class="match-action dislike"><i class="fas fa-times"></i></button>
+                            <button class="match-action like"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <h3 class="match-name">Sarah Johnson <span class="match-age">28</span></h3>
+                        <div class="match-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New York, NY</span>
+                        </div>
+                        <p class="match-bio">Professional photographer and travel enthusiast. Love capturing moments and exploring new places.</p>
+                        <div class="match-tags">
+                            <span class="match-tag">Photography</span>
+                            <span class="match-tag">Travel</span>
+                            <span class="match-tag">Coffee</span>
+                        </div>
+                        <div class="match-compatibility">
+                            <div class="compatibility-score">
+                                <span class="compatibility-value">94%</span>
+                                <span>Match</span>
+                            </div>
+                            <div class="compatibility-bar">
+                                <div class="compatibility-fill" style="width: 94%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match Card 2 -->
+                <div class="match-card">
+                    <div class="match-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Michael Chen">
+                        <div class="match-online"></div>
+                        <div class="match-actions">
+                            <button class="match-action dislike"><i class="fas fa-times"></i></button>
+                            <button class="match-action like"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <h3 class="match-name">Michael Chen <span class="match-age">31</span></h3>
+                        <div class="match-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Brooklyn, NY</span>
+                        </div>
+                        <p class="match-bio">Software engineer who loves hiking, cooking, and live music. Looking for someone to share adventures with.</p>
+                        <div class="match-tags">
+                            <span class="match-tag">Hiking</span>
+                            <span class="match-tag">Tech</span>
+                            <span class="match-tag">Music</span>
+                        </div>
+                        <div class="match-compatibility">
+                            <div class="compatibility-score">
+                                <span class="compatibility-value">91%</span>
+                                <span>Match</span>
+                            </div>
+                            <div class="compatibility-bar">
+                                <div class="compatibility-fill" style="width: 91%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match Card 3 -->
+                <div class="match-card">
+                    <div class="match-image">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Emma Rodriguez">
+                        <div class="match-offline"></div>
+                        <div class="match-actions">
+                            <button class="match-action dislike"><i class="fas fa-times"></i></button>
+                            <button class="match-action like"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <h3 class="match-name">Emma Rodriguez <span class="match-age">26</span></h3>
+                        <div class="match-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Queens, NY</span>
+                        </div>
+                        <p class="match-bio">Elementary school teacher with a passion for art, yoga, and trying new recipes. Love connecting over shared values.</p>
+                        <div class="match-tags">
+                            <span class="match-tag">Art</span>
+                            <span class="match-tag">Yoga</span>
+                            <span class="match-tag">Cooking</span>
+                        </div>
+                        <div class="match-compatibility">
+                            <div class="compatibility-score">
+                                <span class="compatibility-value">96%</span>
+                                <span>Match</span>
+                            </div>
+                            <div class="compatibility-bar">
+                                <div class="compatibility-fill" style="width: 96%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Match Card 4 -->
+                <div class="match-card">
+                    <div class="match-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="David Wilson">
+                        <div class="match-online"></div>
+                        <div class="match-actions">
+                            <button class="match-action dislike"><i class="fas fa-times"></i></button>
+                            <button class="match-action like"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="match-info">
+                        <h3 class="match-name">David Wilson <span class="match-age">29</span></h3>
+                        <div class="match-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Manhattan, NY</span>
+                        </div>
+                        <p class="match-bio">Architect who enjoys photography, jazz clubs, and weekend getaways. Looking for a genuine connection.</p>
+                        <div class="match-tags">
+                            <span class="match-tag">Architecture</span>
+                            <span class="match-tag">Jazz</span>
+                            <span class="match-tag">Travel</span>
+                        </div>
+                        <div class="match-compatibility">
+                            <div class="compatibility-score">
+                                <span class="compatibility-value">89%</span>
+                                <span>Match</span>
+                            </div>
+                            <div class="compatibility-bar">
+                                <div class="compatibility-fill" style="width: 89%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SoulConnect</h3>
+                    <p>Finding meaningful connections through intelligent matching and shared interests.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="quiz.html">Take Quiz</a></li>
+                        <li><a href="#">Matches</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Download Our App</h3>
+                    <p>Find love on the go with our mobile application.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                        <a href="#" class="btn btn-primary" style="margin-top: 10px; width: 100%;">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS .
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            // Hamburger menu functionality
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                });
+            });
+            
+            // Like/Dislike functionality
+            const likeButtons = document.querySelectorAll('.match-action.like');
+            const dislikeButtons = document.querySelectorAll('.match-action.dislike');
+            
+            likeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const matchCard = this.closest('.match-card');
+                    matchCard.style.transform = 'translateX(100%)';
+                    matchCard.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        matchCard.style.display = 'none';
+                    }, 300);
+                    
+                    // In a real app, this would send data to the server
+                    console.log('Liked profile');
+                });
+            });
+            
+            dislikeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const matchCard = this.closest('.match-card');
+                    matchCard.style.transform = 'translateX(-100%)';
+                    matchCard.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        matchCard.style.display = 'none';
+                    }, 300);
+                    
+                    // In a real app, this would send data to the server
+                    console.log('Disliked profile');
+                });
+            });
+            
+            // Age range filter functionality
+            const ageRange = document.getElementById('age');
+            const ageMin = document.getElementById('ageMin');
+            const ageMax = document.getElementById('ageMax');
+            
+            ageRange.addEventListener('input', function() {
+                const value = parseInt(this.value);
+                ageMin.textContent = value;
+                ageMax.textContent = value + 13; // 13 year range
+            });
+        });
+    </script>
+</body>
+</html>
