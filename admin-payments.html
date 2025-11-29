@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Payments Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/admin-payments.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item active">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>Payments Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">Payment Transactions</div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh Data
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Transactions
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$42,580</h3>
+                            <p>Total Revenue</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card transactions">
+                        <div class="stat-icon transactions">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,428</h3>
+                            <p>Total Transactions</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.3% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card pending">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>23</h3>
+                            <p>Pending Payments</p>
+                            <div class="stat-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>5.2% decrease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card refunds">
+                        <div class="stat-icon refunds">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Refunded Payments</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>2.1% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Trends</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option selected>Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Payment Methods</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>This Month</option>
+                                    <option selected>Last 3 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="paymentMethodsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="transactions">All Transactions</button>
+                    <button class="tab" data-tab="pending">Pending Payments</button>
+                    <button class="tab" data-tab="refunds">Refunds</button>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filter Transactions</h3>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-sync-alt"></i> Reset Filters
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label>Date Range</label>
+                            <select class="filter-control">
+                                <option value="">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Payment Status</label>
+                            <select class="filter-control">
+                                <option value="">All Statuses</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
+                                <option value="failed">Failed</option>
+                                <option value="refunded">Refunded</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Payment Method</label>
+                            <select class="filter-control">
+                                <option value="">All Methods</option>
+                                <option value="card">Credit Card</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="apple">Apple Pay</option>
+                                <option value="google">Google Pay</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Subscription Type</label>
+                            <select class="filter-control">
+                                <option value="">All Types</option>
+                                <option value="vip">VIP</option>
+                                <option value="regular">Regular</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-filter"></i> Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transactions Table -->
+                <div class="tables-section" id="transactions-tab">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Transaction ID</th>
+                                    <th>User</th>
+                                    <th>Subscription</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#TX-7834</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">JD</div>
+                                            <div>
+                                                <div style="font-weight: 600;">John Doe</div>
+                                                <div style="font-size: 12px; color: var(--gray);">john.doe@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Male VIP</span></td>
+                                    <td class="amount">$39.99</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <div class="payment-icon">
+                                                <i class="fab fa-cc-visa"></i>
+                                            </div>
+                                            <span>Visa •• 4582</span>
+                                        </div>
+                                    </td>
+                                    <td>2023-08-15</td>
+                                    <td><span class="payment-status status-completed">Completed</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="openRefundModal()">
+                                                <i class="fas fa-undo"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#TX-7833</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SJ</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Sarah Johnson</div>
+                                                <div style="font-size: 12px; color: var(--gray);">sarah.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Female VIP</span></td>
+                                    <td class="amount">$29.99</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <div class="payment-icon">
+                                                <i class="fab fa-paypal"></i>
+                                            </div>
+                                            <span>PayPal</span>
+                                        </div>
+                                    </td>
+                                    <td>2023-08-14</td>
+                                    <td><span class="payment-status status-completed">Completed</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm" onclick="openRefundModal()">
+                                                <i class="fas fa-undo"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#TX-7832</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">MB</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Mike Brown</div>
+                                                <div style="font-size: 12px; color: var(--gray);">mike.brown@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type regular">Male Regular</span></td>
+                                    <td class="amount">$0.00</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <div class="payment-icon">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span>Free Account</span>
+                                        </div>
+                                    </td>
+                                    <td>2023-08-13</td>
+                                    <td><span class="payment-status status-completed">Completed</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#TX-7831</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">ER</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Emma Roberts</div>
+                                                <div style="font-size: 12px; color: var(--gray);">emma.r@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Female VIP</span></td>
+                                    <td class="amount">$29.99</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <div class="payment-icon">
+                                                <i class="fab fa-cc-mastercard"></i>
+                                            </div>
+                                            <span>Mastercard •• 7261</span>
+                                        </div>
+                                    </td>
+                                    <td>2023-08-12</td>
+                                    <td><span class="payment-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#TX-7830</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">AS</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Alex Smith</div>
+                                                <div style="font-size: 12px; color: var(--gray);">alex.smith@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Male VIP</span></td>
+                                    <td class="amount">$39.99</td>
+                                    <td>
+                                        <div class="payment-method">
+                                            <div class="payment-icon">
+                                                <i class="fab fa-cc-apple-pay"></i>
+                                            </div>
+                                            <span>Apple Pay</span>
+                                        </div>
+                                    </td>
+                                    <td>2023-08-11</td>
+                                    <td><span class="payment-status status-failed">Failed</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-warning btn-sm">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <div class="pagination-info">Showing 1-5 of 1,428 transactions</div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">...</button>
+                            <button class="pagination-btn">286</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refund Modal -->
+    <div class="modal" id="refundModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Process Refund</h3>
+                <button class="modal-close" onclick="closeRefundModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Transaction ID</label>
+                    <input type="text" class="form-control" value="#TX-7834" readonly>
+                </div>
+                <div class="form-group">
+                    <label>User</label>
+                    <input type="text" class="form-control" value="John Doe (john.doe@example.com)" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="text" class="form-control" value="$39.99" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Refund Amount</label>
+                    <input type="text" class="form-control" value="39.99" placeholder="Enter refund amount">
+                </div>
+                <div class="form-group">
+                    <label>Refund Reason</label>
+                    <select class="form-control">
+                        <option>Customer Request</option>
+                        <option>Service Issue</option>
+                        <option>Duplicate Charge</option>
+                        <option>Fraudulent Transaction</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Additional Notes</label>
+                    <textarea class="form-control" rows="3" placeholder="Enter any additional notes"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeRefundModal()">Cancel</button>
+                <button class="btn btn-danger">Process Refund</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Monthly Revenue',
+                            data: [28500, 31200, 29800, 35200, 38500, 41800, 45200, 42580, 0, 0, 0, 0],
+                            borderColor: '#6c63ff',
+                            backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Payment Methods Chart
+            const methodsCtx = document.getElementById('paymentMethodsChart').getContext('2d');
+            const methodsChart = new Chart(methodsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Credit Card', 'PayPal', 'Apple Pay', 'Google Pay', 'Other'],
+                    datasets: [{
+                        data: [45, 25, 15, 10, 5],
+                        backgroundColor: [
+                            '#6c63ff',
+                            '#0070ba',
+                            '#000000',
+                            '#4285f4',
+                            '#6c757d'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const transactionsTab = document.getElementById('transactions-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // In a real application, you would load different data based on the tab
+                    // For this demo, we're just showing the same table for all tabs
+                });
+            });
+        });
+
+        // Modal Functions
+        function openRefundModal() {
+            document.getElementById('refundModal').classList.add('active');
+        }
+
+        function closeRefundModal() {
+            document.getElementById('refundModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('refundModal');
+            if (event.target === modal) {
+                closeRefundModal();
+            }
+        }
+    </script>
+</body>
+</html>

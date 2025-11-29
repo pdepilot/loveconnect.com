@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Pricing & Subscription Tiers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/pricing.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-heart"></i>
+                    SoulConnect
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#how-it-works">How It Works</a></li>
+                    <li><a href="index.html#success-stories">Success Stories</a></li>
+                    <li><a href="#" class="active">Pricing</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-outline">Log In</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the subscription plan that works best for you. All plans include our core matching features with different levels of visibility and communication access.</p>
+        </div>
+    </section>
+
+    <!-- Tabs -->
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-button active" data-tab="female">Female Plans</button>
+            <button class="tab-button" data-tab="male">Male Plans</button>
+        </div>
+    </div>
+
+    <!-- Female Pricing Section -->
+    <section class="pricing-section" id="female-plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Female Subscription Plans</h2>
+                <p>Choose the level of visibility and communication that fits your needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card female-vip featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Female VIP</h3>
+                        <div class="price">$29.99<span>/month</span></div>
+                        <p>Maximum visibility and unlimited connections</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Appears on the Discover Page for maximum visibility</li>
+                            <li><i class="fas fa-check"></i> Unlimited swipes and unlimited messaging</li>
+                            <li><i class="fas fa-check"></i> Can chat with both Regular and VIP Male users</li>
+                            <li><i class="fas fa-check"></i> Priority customer support</li>
+                            <li><i class="fas fa-check"></i> See who liked your profile</li>
+                            <li><i class="fas fa-check"></i> Advanced matching filters</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="login.html?plan=female-vip" class="btn btn-primary">Get VIP Access</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card female-regular">
+                    <div class="pricing-header">
+                        <h3>Female Regular</h3>
+                        <div class="price">$0<span>/month</span></div>
+                        <p>Basic features to get started</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Can message up to 30 people per month</li>
+                            <li><i class="fas fa-times"></i> Does not appear on the Discover Page</li>
+                            <li><i class="fas fa-info-circle"></i> Limited chat access with Male users</li>
+                            <li><i class="fas fa-check"></i> Basic matching algorithm</li>
+                            <li><i class="fas fa-times"></i> Cannot see who liked your profile</li>
+                            <li><i class="fas fa-times"></i> Standard customer support</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="login.html?plan=female-regular" class="btn btn-outline">Start for Free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Male Pricing Section -->
+    <section class="pricing-section" id="male-plans" style="display: none;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Male Subscription Plans</h2>
+                <p>Choose the level of visibility and communication that fits your needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card male-vip featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Male VIP</h3>
+                        <div class="price">$39.99<span>/month</span></div>
+                        <p>Maximum visibility and unlimited connections</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited swipes and unlimited messaging</li>
+                            <li><i class="fas fa-check"></i> Can view all categories of subscribers (male & female)</li>
+                            <li><i class="fas fa-check"></i> Can chat with VIP Female subscribers</li>
+                            <li><i class="fas fa-info-circle"></i> Female Regular can reach out only if they message first</li>
+                            <li><i class="fas fa-check"></i> Priority customer support</li>
+                            <li><i class="fas fa-check"></i> See who liked your profile</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="login.html?plan=male-vip" class="btn btn-primary">Get VIP Access</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card male-regular">
+                    <div class="pricing-header">
+                        <h3>Male Regular</h3>
+                        <div class="price">$0<span>/month</span></div>
+                        <p>Basic features to get started</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Can message up to 30 people per month</li>
+                            <li><i class="fas fa-times"></i> Limited visibility on the platform</li>
+                            <li><i class="fas fa-info-circle"></i> Limited chat access with Female users</li>
+                            <li><i class="fas fa-check"></i> Basic matching algorithm</li>
+                            <li><i class="fas fa-times"></i> Cannot see who liked your profile</li>
+                            <li><i class="fas fa-times"></i> Standard customer support</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="login.html?plan=male-regular" class="btn btn-outline">Start for Free</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Plan Comparison</h2>
+                <p>See how our subscription tiers compare across all user types</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div>Features</div>
+                    <div>Female VIP</div>
+                    <div>Female Regular</div>
+                    <div>Male VIP</div>
+                    <div>Male Regular</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Monthly Price</div>
+                    <div>$29.99</div>
+                    <div>Free</div>
+                    <div>$39.99</div>
+                    <div>Free</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Appears on Discover Page</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Unlimited Swipes</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Unlimited Messaging</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Message Limit</div>
+                    <div>Unlimited</div>
+                    <div>30/month</div>
+                    <div>Unlimited</div>
+                    <div>30/month</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Chat with VIP Users</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-info"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Chat with Regular Users</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-info"></i></div>
+                    <div><i class="fas fa-info"></i></div>
+                    <div><i class="fas fa-info"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">See Who Liked You</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Advanced Filters</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="feature-name">Priority Support</div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                    <div><i class="fas fa-check"></i></div>
+                    <div><i class="fas fa-times"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Get answers to common questions about our subscription plans</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Why are there different pricing tiers for males and females?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our pricing structure is designed to create a balanced user experience. Typically, dating platforms have more male users, so we've structured our pricing to encourage more female participation while providing value for all users regardless of gender.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I switch between plans?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to the new features. When downgrading, the changes will take effect at the start of your next billing cycle.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and in some regions, Apple Pay and Google Pay.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is there a free trial for VIP plans?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We occasionally offer free trials for our VIP plans during promotional periods. Check our website or subscribe to our newsletter to stay informed about current promotions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I cancel my subscription at any time?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to your paid features until the end of your current billing period.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Find Your Perfect Match?</h2>
+                <p>Join SoulConnect today and start your journey to finding meaningful connections</p>
+                <div class="cta-buttons">
+                    <a href="login.html" class="btn btn-primary" style="background: white; color: var(--primary);">Sign Up Now</a>
+                    <a href="index.html" class="btn btn-outline" style="border-color: white; color: white;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SoulConnect</h3>
+                    <p>Finding meaningful connections through intelligent matching and shared interests.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#how-it-works">How It Works</a></li>
+                        <li><a href="index.html#success-stories">Success Stories</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Download Our App</h3>
+                    <p>Find love on the go with our mobile application.</p>
+                    <div class="app-buttons">
+                        <a href="#" class="btn btn-primary" style="margin-top: 15px; width: 100%;">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                        <a href="#" class="btn btn-primary" style="margin-top: 10px; width: 100%;">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS Tech.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const femaleSection = document.getElementById('female-plans');
+            const maleSection = document.getElementById('male-plans');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Show/hide sections based on tab
+                    if (this.dataset.tab === 'female') {
+                        femaleSection.style.display = 'block';
+                        maleSection.style.display = 'none';
+                    } else {
+                        femaleSection.style.display = 'none';
+                        maleSection.style.display = 'block';
+                    }
+                });
+            });
+            
+            // FAQ accordion functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    // Toggle current question
+                    question.classList.toggle('active');
+                    answer.classList.toggle('active');
+                    
+                    // Rotate icon
+                    if (question.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                    
+                    // Close other questions
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.nextElementSibling.classList.remove('active');
+                            otherQuestion.querySelector('i').style.transform = 'rotate(0deg)';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Subscription Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <link rel="stylesheet" href="./css/admin-subscription.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item active">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>Subscription Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">Manage Subscriptions</div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh Data
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Reports
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card revenue">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$42,580</h3>
+                            <p>Monthly Revenue</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.3% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card subscribers">
+                        <div class="stat-icon subscribers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15,284</h3>
+                            <p>Total Subscribers</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>5.2% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card vip">
+                        <div class="stat-icon vip">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3,842</h3>
+                            <p>VIP Subscribers</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.7% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card conversion">
+                        <div class="stat-icon conversion">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24.8%</h3>
+                            <p>Conversion Rate</p>
+                            <div class="stat-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>2.1% decrease</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="plans">Subscription Plans</button>
+                    <button class="tab" data-tab="pricing">Pricing Controls</button>
+                    <button class="tab" data-tab="analytics">Subscription Analytics</button>
+                </div>
+
+                <!-- Plans Section -->
+                <div class="plans-section" id="plans-tab">
+                    <div class="plans-content">
+                        <div class="plans-grid">
+                            <!-- Female VIP -->
+                            <div class="plan-card female-vip featured">
+                                <div class="featured-badge">Most Popular</div>
+                                <div class="plan-header">
+                                    <h3>Female VIP</h3>
+                                    <div class="plan-price">$29.99<span>/month</span></div>
+                                    <div class="plan-period">Billed monthly</div>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Appears on Discover Page</li>
+                                        <li><i class="fas fa-check"></i> Unlimited swipes & messaging</li>
+                                        <li><i class="fas fa-check"></i> Chat with all user types</li>
+                                        <li><i class="fas fa-check"></i> Priority customer support</li>
+                                        <li><i class="fas fa-check"></i> See who liked your profile</li>
+                                        <li><i class="fas fa-check"></i> Advanced matching filters</li>
+                                    </ul>
+                                </div>
+                                <div class="plan-footer">
+                                    <button class="btn btn-primary">Edit Plan</button>
+                                </div>
+                            </div>
+
+                            <!-- Female Regular -->
+                            <div class="plan-card female-regular">
+                                <div class="plan-header">
+                                    <h3>Female Regular</h3>
+                                    <div class="plan-price">$0<span>/month</span></div>
+                                    <div class="plan-period">Free forever</div>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Message up to 30 people/month</li>
+                                        <li><i class="fas fa-times"></i> Not on Discover Page</li>
+                                        <li><i class="fas fa-info-circle"></i> Limited chat access</li>
+                                        <li><i class="fas fa-check"></i> Basic matching algorithm</li>
+                                        <li><i class="fas fa-times"></i> Cannot see who liked you</li>
+                                        <li><i class="fas fa-times"></i> Standard support</li>
+                                    </ul>
+                                </div>
+                                <div class="plan-footer">
+                                    <button class="btn btn-outline">Edit Plan</button>
+                                </div>
+                            </div>
+
+                            <!-- Male VIP -->
+                            <div class="plan-card male-vip featured">
+                                <div class="featured-badge">Best Value</div>
+                                <div class="plan-header">
+                                    <h3>Male VIP</h3>
+                                    <div class="plan-price">$39.99<span>/month</span></div>
+                                    <div class="plan-period">Billed monthly</div>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Unlimited swipes & messaging</li>
+                                        <li><i class="fas fa-check"></i> View all subscriber categories</li>
+                                        <li><i class="fas fa-check"></i> Chat with VIP Female users</li>
+                                        <li><i class="fas fa-info-circle"></i> Female Regular can message first</li>
+                                        <li><i class="fas fa-check"></i> Priority customer support</li>
+                                        <li><i class="fas fa-check"></i> See who liked your profile</li>
+                                    </ul>
+                                </div>
+                                <div class="plan-footer">
+                                    <button class="btn btn-primary">Edit Plan</button>
+                                </div>
+                            </div>
+
+                            <!-- Male Regular -->
+                            <div class="plan-card male-regular">
+                                <div class="plan-header">
+                                    <h3>Male Regular</h3>
+                                    <div class="plan-price">$0<span>/month</span></div>
+                                    <div class="plan-period">Free forever</div>
+                                </div>
+                                <div class="plan-features">
+                                    <ul>
+                                        <li><i class="fas fa-check"></i> Message up to 30 people/month</li>
+                                        <li><i class="fas fa-times"></i> Limited visibility</li>
+                                        <li><i class="fas fa-info-circle"></i> Limited chat access</li>
+                                        <li><i class="fas fa-check"></i> Basic matching algorithm</li>
+                                        <li><i class="fas fa-times"></i> Cannot see who liked you</li>
+                                        <li><i class="fas fa-times"></i> Standard support</li>
+                                    </ul>
+                                </div>
+                                <div class="plan-footer">
+                                    <button class="btn btn-outline">Edit Plan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Controls -->
+                <div class="pricing-controls" id="pricing-tab" style="display: none;">
+                    <div class="controls-header">
+                        <h3>Configure Pricing & Features</h3>
+                        <button class="btn btn-success">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label>Female VIP Price</label>
+                            <div class="price-input">
+                                <input type="text" class="form-control" value="29.99">
+                                <span class="currency">USD/month</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Male VIP Price</label>
+                            <div class="price-input">
+                                <input type="text" class="form-control" value="39.99">
+                                <span class="currency">USD/month</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Annual Discount</label>
+                            <div class="price-input">
+                                <input type="text" class="form-control" value="20">
+                                <span class="currency">%</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label>Free Trial Period</label>
+                            <div class="price-input">
+                                <input type="text" class="form-control" value="7">
+                                <span class="currency">days</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #f0f0f0;">
+                        <h4 style="margin-bottom: 15px;">Plan Features Configuration</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h5 style="margin-bottom: 15px; color: var(--female);">Female Plans</h5>
+                                <div class="form-group">
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="femaleDiscover" checked>
+                                        <label for="femaleDiscover">Appear on Discover Page (VIP)</label>
+                                    </div>
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="femaleUnlimited" checked>
+                                        <label for="femaleUnlimited">Unlimited Messaging (VIP)</label>
+                                    </div>
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="femaleChatAll" checked>
+                                        <label for="femaleChatAll">Chat with all user types (VIP)</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 style="margin-bottom: 15px; color: var(--male);">Male Plans</h5>
+                                <div class="form-group">
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="maleViewAll" checked>
+                                        <label for="maleViewAll">View all subscriber categories (VIP)</label>
+                                    </div>
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="maleChatVIP" checked>
+                                        <label for="maleChatVIP">Chat with VIP Female users (VIP)</label>
+                                    </div>
+                                    <div class="checkbox-container" style="margin-bottom: 10px;">
+                                        <input type="checkbox" id="maleUnlimited" checked>
+                                        <label for="maleUnlimited">Unlimited Messaging (VIP)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div class="charts-grid" id="analytics-tab" style="display: none;">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Subscription Growth</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option selected>Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="subscriptionGrowthChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Breakdown</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>This Month</option>
+                                    <option selected>Last 3 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Subscriptions Table -->
+                <div class="table-card">
+                    <div class="table-header">
+                        <h3>Recent Subscription Activity</h3>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i> Add Manual Subscription
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Subscription Type</th>
+                                    <th>Start Date</th>
+                                    <th>Renewal Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">JD</div>
+                                            <div>
+                                                <div style="font-weight: 600;">John Doe</div>
+                                                <div style="font-size: 12px; color: var(--gray);">john.doe@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Male VIP</span></td>
+                                    <td>2023-08-01</td>
+                                    <td>2023-09-01</td>
+                                    <td>$39.99</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SJ</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Sarah Johnson</div>
+                                                <div style="font-size: 12px; color: var(--gray);">sarah.j@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Female VIP</span></td>
+                                    <td>2023-07-15</td>
+                                    <td>2023-08-15</td>
+                                    <td>$29.99</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">MB</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Mike Brown</div>
+                                                <div style="font-size: 12px; color: var(--gray);">mike.brown@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type regular">Male Regular</span></td>
+                                    <td>2023-06-20</td>
+                                    <td>N/A</td>
+                                    <td>$0.00</td>
+                                    <td><span class="status active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-crown"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">ER</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Emma Roberts</div>
+                                                <div style="font-size: 12px; color: var(--gray);">emma.r@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Female VIP</span></td>
+                                    <td>2023-05-10</td>
+                                    <td>2023-06-10</td>
+                                    <td>$29.99</td>
+                                    <td><span class="status expired">Expired</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">AS</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Alex Smith</div>
+                                                <div style="font-size: 12px; color: var(--gray);">alex.smith@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="subscription-type vip">Male VIP</span></td>
+                                    <td>2023-08-05</td>
+                                    <td>2023-09-05</td>
+                                    <td>$39.99</td>
+                                    <td><span class="status canceled">Canceled</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Subscription Growth Chart
+            const growthCtx = document.getElementById('subscriptionGrowthChart').getContext('2d');
+            const growthChart = new Chart(growthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'VIP Subscriptions',
+                            data: [1200, 1500, 1800, 2100, 2400, 2800, 3200, 3500, 3800, 4000, 4200, 4500],
+                            borderColor: '#ffd700',
+                            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Regular Users',
+                            data: [8000, 8500, 9000, 9200, 9500, 9800, 10000, 10200, 10500, 10800, 11000, 11200],
+                            borderColor: '#6c63ff',
+                            backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Female VIP', 'Male VIP', 'Female Regular', 'Male Regular'],
+                    datasets: [{
+                        data: [45, 35, 12, 8],
+                        backgroundColor: [
+                            '#ff4b91',
+                            '#6c63ff',
+                            '#ff93c0',
+                            '#a29dff'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const plansTab = document.getElementById('plans-tab');
+            const pricingTab = document.getElementById('pricing-tab');
+            const analyticsTab = document.getElementById('analytics-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show/hide sections based on tab
+                    const tabName = this.dataset.tab;
+                    
+                    plansTab.style.display = 'none';
+                    pricingTab.style.display = 'none';
+                    analyticsTab.style.display = 'none';
+                    
+                    if (tabName === 'plans') {
+                        plansTab.style.display = 'block';
+                    } else if (tabName === 'pricing') {
+                        pricingTab.style.display = 'block';
+                    } else if (tabName === 'analytics') {
+                        analyticsTab.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

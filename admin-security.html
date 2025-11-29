@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Security Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/admin-security.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="admin-security.html" class="menu-item active">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Security</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>Security Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">Security Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">Security Dashboard</div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh Data
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Security Logs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Alert Banner -->
+                <div class="alert-banner">
+                    <div class="alert-content">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="alert-text">
+                            <h4>Security Alert: Suspicious Activity Detected</h4>
+                            <p>Multiple fake profile creation attempts detected from IP range 192.168.1.xxx. Automated blocking enabled.</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline" style="border-color: white; color: white;">
+                        <i class="fas fa-times"></i> Dismiss
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card threats">
+                        <div class="stat-icon threats">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>43</h3>
+                            <p>Active Threats</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>15.2% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card fake">
+                        <div class="stat-icon fake">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>127</h3>
+                            <p>Fake Profiles</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.7% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card blocked">
+                        <div class="stat-icon blocked">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>842</h3>
+                            <p>Blocked Accounts</p>
+                            <div class="stat-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>5.3% decrease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card verified">
+                        <div class="stat-icon verified">
+                            <i class="fas fa-badge-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12,452</h3>
+                            <p>Verified Users</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.1% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Overview -->
+                <div class="security-overview">
+                    <div class="overview-header">
+                        <h3>Security Status Overview</h3>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-info-circle"></i> View Details
+                        </button>
+                    </div>
+                    <div class="overview-grid">
+                        <div class="overview-item">
+                            <div class="overview-icon active">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Account Protection</h4>
+                            <p>All Systems Active</p>
+                        </div>
+                        <div class="overview-item">
+                            <div class="overview-icon active">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>AI Moderation</h4>
+                            <p>98.7% Accuracy</p>
+                        </div>
+                        <div class="overview-item">
+                            <div class="overview-icon warning">
+                                <i class="fas fa-user-clock"></i>
+                            </div>
+                            <h4>Verification Queue</h4>
+                            <p>23 Pending Reviews</p>
+                        </div>
+                        <div class="overview-item">
+                            <div class="overview-icon critical">
+                                <i class="fas fa-bug"></i>
+                            </div>
+                            <h4>Threat Detection</h4>
+                            <p>12 High Priority Alerts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Security Threats Over Time</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option selected>Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="threatsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Threat Categories</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>This Month</option>
+                                    <option selected>Last 3 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="threatCategoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Settings -->
+                <div class="settings-section">
+                    <div class="settings-header">
+                        <h3>Security Configuration</h3>
+                        <button class="btn btn-success">
+                            <i class="fas fa-save"></i> Save Settings
+                        </button>
+                    </div>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>AI Threat Detection</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Automatically detect and flag suspicious profiles, messages, and activities using machine learning.
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>Auto-Block Suspicious IPs</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Automatically block IP addresses that show patterns of malicious activity or multiple fake account creation.
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>Content Moderation</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Scan and filter inappropriate images, messages, and profile content in real-time.
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>Two-Factor Authentication</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Require two-factor authentication for all admin accounts and optionally for users.
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>API Rate Limiting</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Protect against brute force attacks and API abuse with intelligent rate limiting.
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-header">
+                                <h4>Data Encryption</h4>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-description">
+                                Encrypt all sensitive user data, messages, and payment information at rest and in transit.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="threats">Active Threats</button>
+                    <button class="tab" data-tab="fake">Fake Profiles</button>
+                    <button class="tab" data-tab="blocked">Blocked Accounts</button>
+                    <button class="tab" data-tab="logs">Security Logs</button>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filter Security Data</h3>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-sync-alt"></i> Reset Filters
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label>Threat Level</label>
+                            <select class="filter-control">
+                                <option value="">All Levels</option>
+                                <option value="critical">Critical</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Threat Type</label>
+                            <select class="filter-control">
+                                <option value="">All Types</option>
+                                <option value="fake">Fake Profile</option>
+                                <option value="scam">Scam</option>
+                                <option value="spam">Spam</option>
+                                <option value="harassment">Harassment</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Date Range</label>
+                            <select class="filter-control">
+                                <option value="">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select class="filter-control">
+                                <option value="">All Statuses</option>
+                                <option value="active">Active</option>
+                                <option value="blocked">Blocked</option>
+                                <option value="pending">Pending</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-filter"></i> Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Threats Table -->
+                <div class="security-section" id="threats-tab">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Threat Type</th>
+                                    <th>Level</th>
+                                    <th>Detection Date</th>
+                                    <th>IP Address</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SC</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Scam Account</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@investmentguru</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="threat-type type-scam">Financial Scam</span></td>
+                                    <td><span class="threat-level level-critical">Critical</span></td>
+                                    <td>2023-08-15</td>
+                                    <td>192.168.45.123</td>
+                                    <td><span class="status status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openThreatModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">FP</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Fake Profile</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@model_anna23</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="threat-type type-fake">Fake Identity</span></td>
+                                    <td><span class="threat-level level-high">High</span></td>
+                                    <td>2023-08-14</td>
+                                    <td>192.168.67.234</td>
+                                    <td><span class="status status-active">Active</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openThreatModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SP</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Spam Bot</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@datingtips_bot</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="threat-type type-spam">Spam Messages</span></td>
+                                    <td><span class="threat-level level-medium">Medium</span></td>
+                                    <td>2023-08-13</td>
+                                    <td>192.168.89.156</td>
+                                    <td><span class="status status-blocked">Blocked</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openThreatModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">HR</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Harasser</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@johnny_quick</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="threat-type type-harassment">Harassment</span></td>
+                                    <td><span class="threat-level level-high">High</span></td>
+                                    <td>2023-08-12</td>
+                                    <td>192.168.23.067</td>
+                                    <td><span class="status status-blocked">Blocked</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openThreatModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SC</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Suspicious Account</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@crypto_expert</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="threat-type type-scam">Investment Scam</span></td>
+                                    <td><span class="threat-level level-critical">Critical</span></td>
+                                    <td>2023-08-11</td>
+                                    <td>192.168.34.189</td>
+                                    <td><span class="status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openThreatModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <div class="pagination-info">Showing 1-5 of 43 active threats</div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">...</button>
+                            <button class="pagination-btn">9</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Threat Details Modal -->
+    <div class="modal" id="threatModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Threat Details - #TH-7834</h3>
+                <button class="modal-close" onclick="closeThreatModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="threat-details">
+                    <div class="detail-row">
+                        <div class="detail-label">User:</div>
+                        <div class="detail-value">
+                            <div class="user-cell">
+                                <div class="user-avatar-small">SC</div>
+                                <div>
+                                    <div style="font-weight: 600;">Scam Account</div>
+                                    <div style="font-size: 12px; color: var(--gray);">@investmentguru • investmentguru@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Threat Type:</div>
+                        <div class="detail-value">
+                            <span class="threat-type type-scam">Financial Scam</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Threat Level:</div>
+                        <div class="detail-value">
+                            <span class="threat-level level-critical">Critical</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">IP Address:</div>
+                        <div class="detail-value">192.168.45.123 (Multiple accounts detected)</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Detection Date:</div>
+                        <div class="detail-value">2023-08-15 14:32</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Description:</div>
+                        <div class="detail-value">
+                            Account attempting to solicit financial investments through romantic connections. 
+                            Pattern matches known romance scam tactics with requests for cryptocurrency investments.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evidence-section">
+                    <h4 style="margin-bottom: 15px;">Evidence & Patterns</h4>
+                    <div class="evidence-images">
+                        <div class="evidence-image">
+                            <i class="fas fa-comment"></i>
+                            <span>message_patterns.txt</span>
+                        </div>
+                        <div class="evidence-image">
+                            <i class="fas fa-network-wired"></i>
+                            <span>ip_analysis.pdf</span>
+                        </div>
+                        <div class="evidence-image">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>behavior_analysis.pdf</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <h4 style="margin-bottom: 15px;">Security Actions</h4>
+                    <div class="form-group">
+                        <label>Immediate Action</label>
+                        <select class="form-control">
+                            <option>Select Action</option>
+                            <option>Permanently Ban Account</option>
+                            <option>Block IP Address Range</option>
+                            <option>Report to Authorities</option>
+                            <option>Monitor Account Activity</option>
+                            <option>No Immediate Action</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Security Notes</label>
+                        <textarea class="form-control" rows="3" placeholder="Add security analysis and recommendations..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Preventive Measures</label>
+                        <select class="form-control" multiple>
+                            <option>Update scam detection patterns</option>
+                            <option>Enhance IP reputation system</option>
+                            <option>Add user education prompts</option>
+                            <option>Improve financial scam detection</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeThreatModal()">Cancel</button>
+                <button class="btn btn-danger">Ban & Block</button>
+                <button class="btn btn-primary">Save & Escalate</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Threats Chart
+            const threatsCtx = document.getElementById('threatsChart').getContext('2d');
+            const threatsChart = new Chart(threatsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Threats Detected',
+                            data: [28, 32, 25, 38, 42, 35, 48, 43, 0, 0, 0, 0],
+                            borderColor: '#dc3545',
+                            backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Threats Blocked',
+                            data: [22, 28, 20, 32, 38, 30, 42, 39, 0, 0, 0, 0],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Threat Categories Chart
+            const categoriesCtx = document.getElementById('threatCategoriesChart').getContext('2d');
+            const categoriesChart = new Chart(categoriesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Fake Profiles', 'Scams', 'Spam', 'Harassment', 'Other'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#ffc107',
+                            '#dc3545',
+                            '#6c757d',
+                            '#6f42c1',
+                            '#17a2b8'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const threatsTab = document.getElementById('threats-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // In a real application, you would load different data based on the tab
+                    // For this demo, we're just showing the same table for all tabs
+                });
+            });
+        });
+
+        // Modal Functions
+        function openThreatModal() {
+            document.getElementById('threatModal').classList.add('active');
+        }
+
+        function closeThreatModal() {
+            document.getElementById('threatModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('threatModal');
+            if (event.target === modal) {
+                closeThreatModal();
+            }
+        }
+    </script>
+</body>
+</html>

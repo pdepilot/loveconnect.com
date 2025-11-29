@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulConnect - Find Your Perfect Match</title>
+    <meta name="description" content="SoulConnect - Find meaningful connections through intelligent matching and shared interests. Join thousands of singles finding love today.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/index.css">
@@ -35,15 +36,15 @@
                         SoulConnect
                     </div>
                     <ul class="nav-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">How It Works</a></li>
-                        <li><a href="#">Success Stories</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <!-- <li><a href="#">Blog</a></li> -->
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#success-stories">Success Stories</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                     </ul>
                     <div class="auth-buttons">
                         <a href="login.html" class="btn btn-outline">Log In</a>
-                        <!-- <a href="#" class="btn btn-primary">Sign Up Free</a> -->
+                        <a href="login.html" class="btn btn-primary">Sign Up</a>
                     </div>
                     <div class="hamburger" id="hamburger">
                         <span></span>
@@ -57,15 +58,15 @@
         <!-- Mobile Navigation -->
         <div class="mobile-nav" id="mobileNav">
             <ul class="mobile-nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">How It Works</a></li>
-                <li><a href="#">Success Stories</a></li>
-                <li><a href="#">Pricing</a></li>
-                <!-- <li><a href="#">Blog</a></li> -->
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#success-stories">Success Stories</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
             </ul>
             <div class="mobile-auth-buttons">
                 <a href="login.html" class="btn btn-outline">Log In</a>
-                <!-- <a href="#" class="btn btn-primary">Sign Up Free</a> -->
+                <a href="login.html" class="btn btn-primary">Sign Up</a>
             </div>
         </div>
 
@@ -79,9 +80,38 @@
                         <a href="login.html" class="btn btn-primary hero-btn">Create Your Profile</a>
                         <a href="quiz.html" class="btn btn-outline hero-btn">Take Our Quiz</a>
                     </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">50,000+</span>
+                            <span class="stat-label">Active Members</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1,200+</span>
+                            <span class="stat-label">Success Stories</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">95%</span>
+                            <span class="stat-label">Satisfaction Rate</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <!-- Trust Indicators -->
+        <!-- <section class="trust-indicators">
+            <div class="container">
+                <div class="trust-logos">
+                    <span>As Featured In:</span>
+                    <div class="logos">
+                        <div class="logo-item">TechCrunch</div>
+                        <div class="logo-item">Forbes</div>
+                        <div class="logo-item">Wired</div>
+                        <div class="logo-item">The Guardian</div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
 
         <!-- Features Section -->
         <section class="features">
@@ -112,12 +142,33 @@
                         <h3>Real-Time Chat</h3>
                         <p>See who's online and start conversations instantly with our chat system.</p>
                     </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Verified Profiles</h3>
+                        <p>All profiles are verified to ensure authenticity and your safety.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile App</h3>
+                        <p>Stay connected on the go with our dedicated mobile application.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h3>Smart Algorithm</h3>
+                        <p>Our advanced algorithm learns your preferences to find better matches.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- How It Works Section -->
-        <section class="how-it-works">
+        <section class="how-it-works" id="how-it-works">
             <div class="container">
                 <div class="section-title">
                     <h2>How SoulConnect Works</h2>
@@ -140,11 +191,16 @@
                         <p>Start conversations, see who's online, and build meaningful connections.</p>
                     </div>
                 </div>
+                <div class="cta-section">
+                    <h3>Ready to Find Your Match?</h3>
+                    <p>Join SoulConnect today and start your journey to finding love</p>
+                    <a href="signup.html" class="btn btn-primary">Get Started Now</a>
+                </div>
             </div>
         </section>
 
         <!-- Testimonials -->
-        <section class="testimonials">
+        <section class="testimonials" id="success-stories">
             <div class="container">
                 <div class="section-title">
                     <h2>Success Stories</h2>
@@ -197,6 +253,126 @@
             </div>
         </section>
 
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Simple, Transparent Pricing</h2>
+                    <p>Choose the plan that works best for you</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Free</h3>
+                            <div class="price">$0<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Create a basic profile</li>
+                            <li><i class="fas fa-check"></i> Browse potential matches</li>
+                            <li><i class="fas fa-check"></i> Send limited likes</li>
+                            <li><i class="fas fa-times"></i> Unlimited messaging</li>
+                            <li><i class="fas fa-times"></i> See who liked your profile</li>
+                            <li><i class="fas fa-times"></i> Advanced matching filters</li>
+                        </ul>
+                        <a href="signup.html" class="btn btn-outline">Get Started</a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Premium</h3>
+                            <div class="price">$29.99<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> All Free features</li>
+                            <li><i class="fas fa-check"></i> Unlimited messaging</li>
+                            <li><i class="fas fa-check"></i> See who liked your profile</li>
+                            <li><i class="fas fa-check"></i> Advanced matching filters</li>
+                            <li><i class="fas fa-check"></i> Read receipts</li>
+                            <li><i class="fas fa-check"></i> Priority customer support</li>
+                        </ul>
+                        <a href="signup.html" class="btn btn-primary">Get Premium</a>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>VIP</h3>
+                            <div class="price">$49.99<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> All Premium features</li>
+                            <li><i class="fas fa-check"></i> Personal matchmaking service</li>
+                            <li><i class="fas fa-check"></i> Profile highlighting</li>
+                            <li><i class="fas fa-check"></i> Monthly dating coach sessions</li>
+                            <li><i class="fas fa-check"></i> Custom profile analytics</li>
+                            <li><i class="fas fa-check"></i> Exclusive event invitations</li>
+                        </ul>
+                        <a href="signup.html" class="btn btn-outline">Go VIP</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Get answers to the most common questions about SoulConnect</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How does the matching algorithm work?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our algorithm considers your interests, values, personality traits, and preferences to find compatible matches. The more you use the platform and interact with profiles, the better our suggestions become.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Is my personal information safe?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we take privacy and security seriously. All profiles are verified, and we use industry-standard encryption to protect your data. We never share your personal information with third parties without your consent.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Can I use SoulConnect for free?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer a free tier that allows you to create a profile, browse matches, and send limited likes. For unlimited messaging and advanced features, we offer Premium and VIP subscriptions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I delete my account?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can delete your account at any time from the settings page. We'll be sad to see you go, but the process is simple and immediate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Find Your Perfect Match?</h2>
+                    <p>Join thousands of singles who have found love through SoulConnect</p>
+                    <div class="cta-buttons">
+                        <a href="signup.html" class="btn btn-primary">Sign Up Now</a>
+                        <a href="quiz.html" class="btn btn-outline">Take Compatibility Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer>
             <div class="container">
@@ -215,10 +391,10 @@
                         <h3>Quick Links</h3>
                         <ul class="footer-links">
                             <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Success Stories</a></li>
-                            <!-- <li><a href="#">Blog</a></li> -->
+                            <li><a href="#how-it-works">How It Works</a></li>
+                            <li><a href="#success-stories">Success Stories</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#faq">FAQ</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
@@ -244,7 +420,7 @@
                     </div>
                 </div>
                 <div class="copyright">
-                    &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS .
+                    &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS tech .
                 </div>
             </div>
         </footer>
@@ -318,6 +494,53 @@
                 link.addEventListener('click', function() {
                     hamburger.classList.remove('active');
                     mobileNav.classList.remove('active');
+                });
+            });
+
+            // FAQ accordion functionality
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    // Toggle current question
+                    question.classList.toggle('active');
+                    answer.classList.toggle('active');
+                    
+                    // Rotate icon
+                    if (question.classList.contains('active')) {
+                        icon.style.transform = 'rotate(180deg)';
+                    } else {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                    
+                    // Close other questions
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.nextElementSibling.classList.remove('active');
+                            otherQuestion.querySelector('i').style.transform = 'rotate(0deg)';
+                        }
+                    });
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
             });
         });

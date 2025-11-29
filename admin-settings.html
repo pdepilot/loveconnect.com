@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Settings Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin-settings.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="admin-security.html" class="menu-item">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Security</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item active">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>System Settings</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">System Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">Platform Configuration</div>
+                    <div class="page-actions">
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Settings
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Settings Layout -->
+                <div class="settings-layout">
+                    <!-- Settings Sidebar -->
+                    <div class="settings-sidebar">
+                        <ul class="settings-nav">
+                            <li class="settings-nav-item active" data-target="general">
+                                <i class="fas fa-cog"></i>
+                                <span>General Settings</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="users">
+                                <i class="fas fa-users"></i>
+                                <span>User Management</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="security">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Security & Privacy</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="notifications">
+                                <i class="fas fa-bell"></i>
+                                <span>Notifications</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="api">
+                                <i class="fas fa-code"></i>
+                                <span>API Configuration</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="admins">
+                                <i class="fas fa-user-cog"></i>
+                                <span>Admin Management</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="system">
+                                <i class="fas fa-server"></i>
+                                <span>System Status</span>
+                            </li>
+                            <li class="settings-nav-item" data-target="backup">
+                                <i class="fas fa-database"></i>
+                                <span>Backup & Restore</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Settings Content -->
+                    <div class="settings-content">
+                        <!-- General Settings -->
+                        <div class="settings-section active" id="general">
+                            <div class="section-header">
+                                <h2>General Settings</h2>
+                                <p>Configure basic platform settings and preferences</p>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="siteName">Site Name</label>
+                                    <input type="text" id="siteName" class="form-control" value="SoulConnect">
+                                    <div class="form-text">The name displayed throughout the platform</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="siteUrl">Site URL</label>
+                                    <input type="url" id="siteUrl" class="form-control" value="https://soulconnect.com">
+                                    <div class="form-text">Your platform's main website address</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactEmail">Contact Email</label>
+                                    <input type="email" id="contactEmail" class="form-control" value="support@soulconnect.com">
+                                    <div class="form-text">Email address for user support inquiries</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="timezone">Timezone</label>
+                                    <select id="timezone" class="form-control">
+                                        <option>UTC-08:00 Pacific Time</option>
+                                        <option selected>UTC-05:00 Eastern Time</option>
+                                        <option>UTC+00:00 Greenwich Mean Time</option>
+                                        <option>UTC+01:00 Central European Time</option>
+                                    </select>
+                                    <div class="form-text">Default timezone for the platform</div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Platform Features</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>User Registration</h4>
+                                        <p>Allow new users to create accounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Profile Verification</h4>
+                                        <p>Require email verification for new accounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Location Services</h4>
+                                        <p>Enable location-based matching</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Advanced Matching</h4>
+                                        <p>Use AI for compatibility matching</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Management Settings -->
+                        <div class="settings-section" id="users">
+                            <div class="section-header">
+                                <h2>User Management Settings</h2>
+                                <p>Configure user registration, profiles, and permissions</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Registration Settings</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Email Verification</h4>
+                                        <p>Require email confirmation for new accounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Manual Approval</h4>
+                                        <p>Review new profiles before activation</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Age Verification</h4>
+                                        <p>Require age confirmation (18+)</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Profile Settings</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maxPhotos">Maximum Photos per User</label>
+                                    <input type="number" id="maxPhotos" class="form-control" value="9" min="1" max="20">
+                                    <div class="form-text">Maximum number of photos a user can upload</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bioLength">Maximum Bio Length</label>
+                                    <input type="number" id="bioLength" class="form-control" value="500" min="50" max="2000">
+                                    <div class="form-text">Maximum characters allowed in user bios</div>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Profile Completeness</h4>
+                                        <p>Require complete profiles for matching</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security & Privacy Settings -->
+                        <div class="settings-section" id="security">
+                            <div class="section-header">
+                                <h2>Security & Privacy Settings</h2>
+                                <p>Configure security measures and privacy controls</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Security Settings</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Two-Factor Authentication</h4>
+                                        <p>Require 2FA for admin accounts</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Password Requirements</h4>
+                                        <p>Enforce strong password policies</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Session Timeout</h4>
+                                        <p>Automatically log out inactive users</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sessionTimeout">Session Timeout (minutes)</label>
+                                    <input type="number" id="sessionTimeout" class="form-control" value="60" min="15" max="1440">
+                                    <div class="form-text">Time before inactive users are automatically logged out</div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Privacy Settings</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Profile Visibility</h4>
+                                        <p>Allow users to control their profile visibility</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Data Encryption</h4>
+                                        <p>Encrypt sensitive user data</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>GDPR Compliance</h4>
+                                        <p>Enable GDPR privacy controls</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Settings -->
+                        <div class="settings-section" id="notifications">
+                            <div class="section-header">
+                                <h2>Notification Settings</h2>
+                                <p>Configure email and push notification preferences</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Email Notifications</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Welcome Emails</h4>
+                                        <p>Send welcome email to new users</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Match Notifications</h4>
+                                        <p>Notify users of new matches</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Message Alerts</h4>
+                                        <p>Email users about new messages</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Promotional Emails</h4>
+                                        <p>Send promotional and update emails</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Admin Notifications</h3>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Security Alerts</h4>
+                                        <p>Notify admins of security incidents</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>System Errors</h4>
+                                        <p>Alert admins of system errors</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Performance Warnings</h4>
+                                        <p>Notify when system performance degrades</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- API Configuration -->
+                        <div class="settings-section" id="api">
+                            <div class="section-header">
+                                <h2>API Configuration</h2>
+                                <p>Manage API keys and integration settings</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>API Keys</h3>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i> Generate New Key
+                                    </button>
+                                </div>
+                                <ul class="api-key-list">
+                                    <li class="api-key-item">
+                                        <div class="api-key-info">
+                                            <h4>Web Application</h4>
+                                            <p>Main website API access</p>
+                                            <div class="api-key">sk_live_51Hx8jK2e8qR9w4bV7mN3pQ6y...</div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-copy"></i> Copy
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Revoke
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="api-key-item">
+                                        <div class="api-key-info">
+                                            <h4>Mobile App</h4>
+                                            <p>iOS and Android applications</p>
+                                            <div class="api-key">sk_live_72Jx5mL8qR9w4bV7mN3pQ6y...</div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-copy"></i> Copy
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Revoke
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="api-key-item">
+                                        <div class="api-key-info">
+                                            <h4>Analytics Service</h4>
+                                            <p>Data analysis and reporting</p>
+                                            <div class="api-key">sk_live_93Kx9nP8qR9w4bV7mN3pQ6y...</div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-copy"></i> Copy
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i> Revoke
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>API Rate Limits</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="requestsPerMinute">Requests per Minute</label>
+                                    <input type="number" id="requestsPerMinute" class="form-control" value="1000" min="100" max="10000">
+                                    <div class="form-text">Maximum API requests allowed per minute per key</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="requestsPerHour">Requests per Hour</label>
+                                    <input type="number" id="requestsPerHour" class="form-control" value="10000" min="1000" max="100000">
+                                    <div class="form-text">Maximum API requests allowed per hour per key</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Admin Management -->
+                        <div class="settings-section" id="admins">
+                            <div class="section-header">
+                                <h2>Admin Management</h2>
+                                <p>Manage administrator accounts and permissions</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Administrators</h3>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i> Add Admin
+                                    </button>
+                                </div>
+                                <ul class="admin-list">
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <div class="admin-avatar">SU</div>
+                                            <div class="admin-details">
+                                                <h4>Super User</h4>
+                                                <p>superuser@soulconnect.com</p>
+                                                <span class="admin-role role-super">Super Admin</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <div class="admin-avatar">AD</div>
+                                            <div class="admin-details">
+                                                <h4>Admin User</h4>
+                                                <p>admin@soulconnect.com</p>
+                                                <span class="admin-role role-admin">Administrator</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <div class="admin-avatar">MO</div>
+                                            <div class="admin-details">
+                                                <h4>Moderator One</h4>
+                                                <p>moderator1@soulconnect.com</p>
+                                                <span class="admin-role role-moderator">Moderator</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <div class="admin-avatar">MT</div>
+                                            <div class="admin-details">
+                                                <h4>Moderator Two</h4>
+                                                <p>moderator2@soulconnect.com</p>
+                                                <span class="admin-role role-moderator">Moderator</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Permission Levels</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="superAdminPerms">Super Administrator</label>
+                                    <textarea id="superAdminPerms" class="form-control" rows="3" readonly>Full system access, user management, financial data, security settings, system configuration</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminPerms">Administrator</label>
+                                    <textarea id="adminPerms" class="form-control" rows="3" readonly>User management, content moderation, reports, analytics, limited settings</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="moderatorPerms">Moderator</label>
+                                    <textarea id="moderatorPerms" class="form-control" rows="3" readonly>Content moderation, user reports, message monitoring, basic analytics</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Status -->
+                        <div class="settings-section" id="system">
+                            <div class="section-header">
+                                <h2>System Status</h2>
+                                <p>Monitor system health and performance metrics</p>
+                            </div>
+
+                            <div class="status-grid">
+                                <div class="status-item">
+                                    <div class="status-icon operational">
+                                        <i class="fas fa-server"></i>
+                                    </div>
+                                    <h4>Web Server</h4>
+                                    <p>Operational</p>
+                                </div>
+                                <div class="status-item">
+                                    <div class="status-icon operational">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <h4>Database</h4>
+                                    <p>Operational</p>
+                                </div>
+                                <div class="status-item">
+                                    <div class="status-icon warning">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <h4>Email Service</h4>
+                                    <p>High Load</p>
+                                </div>
+                                <div class="status-item">
+                                    <div class="status-icon operational">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h4>AI Services</h4>
+                                    <p>Operational</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>System Information</h3>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Platform Version</label>
+                                        <input type="text" class="form-control" value="v2.4.1" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Updated</label>
+                                        <input type="text" class="form-control" value="2023-08-10 14:30" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Server Uptime</label>
+                                        <input type="text" class="form-control" value="15 days, 7 hours" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Active Users</label>
+                                        <input type="text" class="form-control" value="12,452" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Performance Metrics</h3>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Response Time</label>
+                                        <input type="text" class="form-control" value="142ms" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CPU Usage</label>
+                                        <input type="text" class="form-control" value="42%" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Memory Usage</label>
+                                        <input type="text" class="form-control" value="67%" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Disk Space</label>
+                                        <input type="text" class="form-control" value="1.2TB / 2TB" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Backup & Restore -->
+                        <div class="settings-section" id="backup">
+                            <div class="section-header">
+                                <h2>Backup & Restore</h2>
+                                <p>Manage system backups and data restoration</p>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Recent Backups</h3>
+                                    <button class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i> Create Backup
+                                    </button>
+                                </div>
+                                <ul class="admin-list">
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <i class="fas fa-database" style="font-size: 24px; color: var(--primary);"></i>
+                                            <div class="admin-details">
+                                                <h4>Full System Backup</h4>
+                                                <p>2023-08-15 02:00 • 2.4 GB</p>
+                                                <span style="color: var(--success); font-size: 12px; font-weight: 600;">Completed</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <i class="fas fa-database" style="font-size: 24px; color: var(--primary);"></i>
+                                            <div class="admin-details">
+                                                <h4>User Data Backup</h4>
+                                                <p>2023-08-14 02:00 • 1.8 GB</p>
+                                                <span style="color: var(--success); font-size: 12px; font-weight: 600;">Completed</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <li class="admin-item">
+                                        <div class="admin-info">
+                                            <i class="fas fa-database" style="font-size: 24px; color: var(--primary);"></i>
+                                            <div class="admin-details">
+                                                <h4>Database Only</h4>
+                                                <p>2023-08-13 02:00 • 856 MB</p>
+                                                <span style="color: var(--success); font-size: 12px; font-weight: 600;">Completed</span>
+                                            </div>
+                                        </div>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-outline btn-sm">
+                                                <i class="fas fa-download"></i> Download
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>Backup Settings</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label for="backupFrequency">Backup Frequency</label>
+                                    <select id="backupFrequency" class="form-control">
+                                        <option>Daily</option>
+                                        <option selected>Weekly</option>
+                                        <option>Monthly</option>
+                                    </select>
+                                    <div class="form-text">How often to automatically create system backups</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="retentionPeriod">Retention Period</label>
+                                    <select id="retentionPeriod" class="form-control">
+                                        <option>7 days</option>
+                                        <option selected>30 days</option>
+                                        <option>90 days</option>
+                                        <option>1 year</option>
+                                    </select>
+                                    <div class="form-text">How long to keep backup files before automatic deletion</div>
+                                </div>
+                                <div class="toggle-group">
+                                    <div class="toggle-label">
+                                        <h4>Cloud Backup</h4>
+                                        <p>Automatically upload backups to cloud storage</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="danger-zone">
+                                <div class="danger-header">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <h3>Danger Zone</h3>
+                                </div>
+                                <div class="danger-content">
+                                    <p>These actions are irreversible. Please proceed with caution.</p>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-outline">
+                                            <i class="fas fa-file-import"></i> Import Data
+                                        </button>
+                                        <button class="btn btn-warning">
+                                            <i class="fas fa-history"></i> Restore Backup
+                                        </button>
+                                        <button class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Reset System
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Settings Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.settings-nav-item');
+            const sections = document.querySelectorAll('.settings-section');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+
+                    // Hide all sections
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show target section
+                    const target = this.getAttribute('data-target');
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            // Initialize tooltips and other UI enhancements
+            initializeSettingsUI();
+        });
+
+        function initializeSettingsUI() {
+            // Add confirmation for dangerous actions
+            const dangerButtons = document.querySelectorAll('.btn-danger');
+            dangerButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!confirm('Are you sure you want to perform this action? This cannot be undone.')) {
+                        e.preventDefault();
+                    }
+                });
+            });
+
+            // Copy API key functionality
+            const copyButtons = document.querySelectorAll('.btn-outline');
+            copyButtons.forEach(button => {
+                if (button.querySelector('.fa-copy')) {
+                    button.addEventListener('click', function() {
+                        const apiKey = this.closest('.api-key-item').querySelector('.api-key').textContent;
+                        navigator.clipboard.writeText(apiKey).then(() => {
+                            const originalText = this.innerHTML;
+                            this.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                            setTimeout(() => {
+                                this.innerHTML = originalText;
+                            }, 2000);
+                        });
+                    });
+                }
+            });
+
+            // Toggle switch visual feedback
+            const toggleSwitches = document.querySelectorAll('.toggle-switch input');
+            toggleSwitches.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const label = this.closest('.toggle-group').querySelector('h4');
+                    if (this.checked) {
+                        label.style.color = 'var(--success)';
+                    } else {
+                        label.style.color = '';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Reports Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/admin-reports.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item active">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                <a href="admin-security.html" class="menu-item">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Security</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>Reports Management</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="page-title">Flag Reports & Disputes</div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i> Refresh Data
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-download"></i> Export Reports
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card pending">
+                        <div class="stat-icon pending">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>127</h3>
+                            <p>Pending Reports</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>15.2% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card resolved">
+                        <div class="stat-icon resolved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>842</h3>
+                            <p>Resolved Reports</p>
+                            <div class="stat-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>8.7% decrease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card fake">
+                        <div class="stat-icon fake">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>43</h3>
+                            <p>Fake Profiles</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>5.3% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card inappropriate">
+                        <div class="stat-icon inappropriate">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>89</h3>
+                            <p>Inappropriate Content</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.1% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Reports Over Time</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option selected>Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="reportsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Report Categories</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>This Month</option>
+                                    <option selected>Last 3 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoriesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="pending">Pending Reports</button>
+                    <button class="tab" data-tab="investigating">Under Investigation</button>
+                    <button class="tab" data-tab="resolved">Resolved Reports</button>
+                    <button class="tab" data-tab="fake">Fake Profiles</button>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filter Reports</h3>
+                        <button class="btn btn-outline btn-sm">
+                            <i class="fas fa-sync-alt"></i> Reset Filters
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label>Report Type</label>
+                            <select class="filter-control">
+                                <option value="">All Types</option>
+                                <option value="inappropriate">Inappropriate Content</option>
+                                <option value="fake">Fake Profile</option>
+                                <option value="spam">Spam</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Priority</label>
+                            <select class="filter-control">
+                                <option value="">All Priorities</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Date Range</label>
+                            <select class="filter-control">
+                                <option value="">All Time</option>
+                                <option value="today">Today</option>
+                                <option value="week">This Week</option>
+                                <option value="month">This Month</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select class="filter-control">
+                                <option value="">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="investigating">Investigating</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                        <div class="filter-actions">
+                            <button class="btn btn-primary">
+                                <i class="fas fa-filter"></i> Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Table -->
+                <div class="reports-section" id="pending-tab">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Reported User</th>
+                                    <th>Reported By</th>
+                                    <th>Reason</th>
+                                    <th>Priority</th>
+                                    <th>Date Reported</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#RP-7834</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">JD</div>
+                                            <div>
+                                                <div style="font-weight: 600;">John Doe</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@johndoe</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">SJ</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Sarah Johnson</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@sarahj</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="report-reason reason-inappropriate">Inappropriate Messages</span></td>
+                                    <td><span class="priority priority-high">High</span></td>
+                                    <td>2023-08-15</td>
+                                    <td><span class="report-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openReportModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RP-7833</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">MB</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Mike Brown</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@mikeb</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">ER</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Emma Roberts</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@emmar</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="report-reason reason-fake">Fake Profile</span></td>
+                                    <td><span class="priority priority-high">High</span></td>
+                                    <td>2023-08-14</td>
+                                    <td><span class="report-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openReportModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RP-7832</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">AS</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Alex Smith</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@alexs</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">TJ</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Taylor Jones</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@taylorj</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="report-reason reason-spam">Spam Messages</span></td>
+                                    <td><span class="priority priority-medium">Medium</span></td>
+                                    <td>2023-08-13</td>
+                                    <td><span class="report-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openReportModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RP-7831</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">KC</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Kevin Chen</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@kevinc</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">LM</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Lisa Martinez</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@lisam</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="report-reason reason-harassment">Harassment</span></td>
+                                    <td><span class="priority priority-high">High</span></td>
+                                    <td>2023-08-12</td>
+                                    <td><span class="report-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openReportModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#RP-7830</td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">DW</div>
+                                            <div>
+                                                <div style="font-weight: 600;">David Wilson</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@davidw</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="user-cell">
+                                            <div class="user-avatar-small">RG</div>
+                                            <div>
+                                                <div style="font-weight: 600;">Rachel Green</div>
+                                                <div style="font-size: 12px; color: var(--gray);">@rachelg</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="report-reason reason-other">Underage User</span></td>
+                                    <td><span class="priority priority-high">High</span></td>
+                                    <td>2023-08-11</td>
+                                    <td><span class="report-status status-pending">Pending</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-primary btn-sm" onclick="openReportModal()">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-success btn-sm">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <div class="pagination-info">Showing 1-5 of 127 pending reports</div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">...</button>
+                            <button class="pagination-btn">26</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Details Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report Details - #RP-7834</h3>
+                <button class="modal-close" onclick="closeReportModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="report-details">
+                    <div class="detail-row">
+                        <div class="detail-label">Reported User:</div>
+                        <div class="detail-value">
+                            <div class="user-cell">
+                                <div class="user-avatar-small">JD</div>
+                                <div>
+                                    <div style="font-weight: 600;">John Doe</div>
+                                    <div style="font-size: 12px; color: var(--gray);">@johndoe • john.doe@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Reported By:</div>
+                        <div class="detail-value">
+                            <div class="user-cell">
+                                <div class="user-avatar-small">SJ</div>
+                                <div>
+                                    <div style="font-weight: 600;">Sarah Johnson</div>
+                                    <div style="font-size: 12px; color: var(--gray);">@sarahj • sarah.j@example.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Reason:</div>
+                        <div class="detail-value">
+                            <span class="report-reason reason-inappropriate">Inappropriate Messages</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Priority:</div>
+                        <div class="detail-value">
+                            <span class="priority priority-high">High</span>
+                        </div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Date Reported:</div>
+                        <div class="detail-value">2023-08-15 14:32</div>
+                    </div>
+                    <div class="detail-row">
+                        <div class="detail-label">Description:</div>
+                        <div class="detail-value">
+                            User sent multiple inappropriate messages with explicit content after being asked to stop. 
+                            The conversation started normally but escalated quickly with unsolicited explicit images.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evidence-section">
+                    <h4 style="margin-bottom: 15px;">Evidence</h4>
+                    <div class="evidence-images">
+                        <div class="evidence-image">
+                            <i class="fas fa-image"></i>
+                            <span>message1.png</span>
+                        </div>
+                        <div class="evidence-image">
+                            <i class="fas fa-image"></i>
+                            <span>message2.png</span>
+                        </div>
+                        <div class="evidence-image">
+                            <i class="fas fa-image"></i>
+                            <span>message3.png</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-section">
+                    <h4 style="margin-bottom: 15px;">Take Action</h4>
+                    <div class="form-group">
+                        <label>Action</label>
+                        <select class="form-control">
+                            <option>Select Action</option>
+                            <option>Warn User</option>
+                            <option>Suspend Account (7 days)</option>
+                            <option>Suspend Account (30 days)</option>
+                            <option>Permanently Ban User</option>
+                            <option>Dismiss Report</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Notes</label>
+                        <textarea class="form-control" rows="3" placeholder="Add internal notes about this action"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Notify Reporter</label>
+                        <textarea class="form-control" rows="2" placeholder="Optional message to send to the reporter"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeReportModal()">Cancel</button>
+                <button class="btn btn-success">Resolve Report</button>
+                <button class="btn btn-primary">Save & Investigate</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Reports Chart
+            const reportsCtx = document.getElementById('reportsChart').getContext('2d');
+            const reportsChart = new Chart(reportsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Reports Filed',
+                            data: [85, 92, 78, 105, 120, 98, 112, 127, 0, 0, 0, 0],
+                            borderColor: '#ff4b91',
+                            backgroundColor: 'rgba(255, 75, 145, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Reports Resolved',
+                            data: [65, 72, 68, 85, 95, 82, 98, 84, 0, 0, 0, 0],
+                            borderColor: '#6c63ff',
+                            backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Categories Chart
+            const categoriesCtx = document.getElementById('categoriesChart').getContext('2d');
+            const categoriesChart = new Chart(categoriesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Inappropriate Content', 'Fake Profiles', 'Harassment', 'Spam', 'Other'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#dc3545',
+                            '#ffc107',
+                            '#17a2b8',
+                            '#6c757d',
+                            '#6f42c1'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const pendingTab = document.getElementById('pending-tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // In a real application, you would load different data based on the tab
+                    // For this demo, we're just showing the same table for all tabs
+                });
+            });
+        });
+
+        // Modal Functions
+        function openReportModal() {
+            document.getElementById('reportModal').classList.add('active');
+        }
+
+        function closeReportModal() {
+            document.getElementById('reportModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('reportModal');
+            if (event.target === modal) {
+                closeReportModal();
+            }
+        }
+    </script>
+</body>
+</html>

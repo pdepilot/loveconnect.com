@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulConnect - Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link rel="stylesheet" href="css/admin-analytics.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-heart"></i>
+                <h2>SoulConnect Admin</h2>
+            </div>
+            <div class="sidebar-menu">
+                <div class="menu-section">Main</div>
+                <a href="admin.html" class="menu-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="admin-analytics.html" class="menu-item active">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                
+                <div class="menu-section">Management</div>
+                <a href="admin-user.html" class="menu-item">
+                    <i class="fas fa-users"></i>
+                    <span>User Management</span>
+                </a>
+                <a href="admin-subscription.html" class="menu-item">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Subscriptions</span>
+                </a>
+                <a href="admin-payments.html" class="menu-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Payments</span>
+                </a>
+                
+                <div class="menu-section">Content</div>
+                <a href="admin-reports.html" class="menu-item">
+                    <i class="fas fa-flag"></i>
+                    <span>Reports</span>
+                </a>
+                <a href="admin-messages.html" class="menu-item">
+                    <i class="fas fa-comments"></i>
+                    <span>Messages</span>
+                </a>
+                
+                <div class="menu-section">Settings</div>
+                <a href="admin-settings.html" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="admin-logout.html" class="menu-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <h1>Analytics Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="date-filter">
+                        <select id="dateRange">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option selected>Last 90 Days</option>
+                            <option>This Year</option>
+                            <option>Custom Range</option>
+                        </select>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 600;">Admin User</div>
+                            <div style="font-size: 12px; color: var(--gray);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card users">
+                        <div class="stat-icon users">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>15,284</h3>
+                            <p>Total Users</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card revenue">
+                        <div class="stat-icon revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>$42,580</h3>
+                            <p>Monthly Revenue</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>8.3% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card subscriptions">
+                        <div class="stat-icon subscriptions">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3,842</h3>
+                            <p>VIP Subscriptions</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>5.7% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card conversions">
+                        <div class="stat-icon conversions">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24.8%</h3>
+                            <p>Conversion Rate</p>
+                            <div class="stat-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>2.1% decrease</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card active-users">
+                        <div class="stat-icon active-users">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>8,452</h3>
+                            <p>Daily Active Users</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>3.2% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-card engagement">
+                        <div class="stat-icon engagement">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>68%</h3>
+                            <p>User Engagement</p>
+                            <div class="stat-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>4.5% increase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>User Growth & Activity</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 30 Days</option>
+                                    <option selected>Last 90 Days</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="userGrowthChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Subscription Distribution</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>This Month</option>
+                                    <option selected>Last 3 Months</option>
+                                    <option>This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="subscriptionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h4>Daily Sign-ups</h4>
+                            <span class="trend-up"><i class="fas fa-arrow-up"></i> 12.5%</span>
+                        </div>
+                        <div class="metric-value">142</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill primary" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h4>Subscription Upgrades</h4>
+                            <span class="trend-up"><i class="fas fa-arrow-up"></i> 8.3%</span>
+                        </div>
+                        <div class="metric-value">67</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill success" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-header">
+                            <h4>Promo Code Conversions</h4>
+                            <span class="trend-down"><i class="fas fa-arrow-down"></i> 2.1%</span>
+                        </div>
+                        <div class="metric-value">24.8%</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill warning" style="width: 62%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Charts -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Revenue Trends</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Monthly</option>
+                                    <option selected>Quarterly</option>
+                                    <option>Yearly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>User Demographics</h3>
+                            <div class="chart-actions">
+                                <select>
+                                    <option>Age</option>
+                                    <option selected>Location</option>
+                                    <option>Interests</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tables Section -->
+                <div class="tables-grid">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>Top Performing Influencers</h3>
+                            <div class="table-actions">
+                                <button class="btn btn-outline">View All</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Influencer</th>
+                                        <th>Referrals</th>
+                                        <th>Conversions</th>
+                                        <th>Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">JD</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">John Doe</div>
+                                                    <div style="font-size: 12px; color: var(--gray);">@johndoe</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>1,248</td>
+                                        <td>342</td>
+                                        <td>$8,520</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">SJ</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Sarah Johnson</div>
+                                                    <div style="font-size: 12px; color: var(--gray);">@sarahj</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>982</td>
+                                        <td>287</td>
+                                        <td>$6,150</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">MB</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Mike Brown</div>
+                                                    <div style="font-size: 12px; color: var(--gray);">@mikeb</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>754</td>
+                                        <td>198</td>
+                                        <td>$4,820</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 600;">ER</div>
+                                                <div>
+                                                    <div style="font-weight: 600;">Emma Roberts</div>
+                                                    <div style="font-size: 12px; color: var(--gray);">@emmar</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>621</td>
+                                        <td>154</td>
+                                        <td>$3,750</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>Promo Code Performance</h3>
+                            <div class="table-actions">
+                                <button class="btn btn-outline">View All</button>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Promo Code</th>
+                                        <th>Usage</th>
+                                        <th>Conversions</th>
+                                        <th>Success Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>LOVE2023</td>
+                                        <td>1,842</td>
+                                        <td>524</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="flex: 1;">
+                                                    <div class="progress-bar">
+                                                        <div class="progress-fill primary" style="width: 72%"></div>
+                                                    </div>
+                                                </div>
+                                                <span>72%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SOULMATE25</td>
+                                        <td>1,245</td>
+                                        <td>387</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="flex: 1;">
+                                                    <div class="progress-bar">
+                                                        <div class="progress-fill success" style="width: 68%"></div>
+                                                    </div>
+                                                </div>
+                                                <span>68%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FINDLOVE</td>
+                                        <td>987</td>
+                                        <td>254</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="flex: 1;">
+                                                    <div class="progress-bar">
+                                                        <div class="progress-fill warning" style="width: 52%"></div>
+                                                    </div>
+                                                </div>
+                                                <span>52%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>CONNECT50</td>
+                                        <td>754</td>
+                                        <td>198</td>
+                                        <td>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                <div style="flex: 1;">
+                                                    <div class="progress-bar">
+                                                        <div class="progress-fill danger" style="width: 42%"></div>
+                                                    </div>
+                                                </div>
+                                                <span>42%</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Section -->
+                <div class="export-section">
+                    <div class="export-header">
+                        <h3>Export Data for Team Review</h3>
+                        <button class="btn btn-primary">
+                            <i class="fas fa-download"></i> Export All Data
+                        </button>
+                    </div>
+                    <div class="export-options">
+                        <div class="export-option">
+                            <div class="export-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">User Data</div>
+                                <div style="font-size: 12px; color: var(--gray);">Export all user information</div>
+                            </div>
+                        </div>
+                        <div class="export-option">
+                            <div class="export-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Analytics Data</div>
+                                <div style="font-size: 12px; color: var(--gray);">Export analytics and metrics</div>
+                            </div>
+                        </div>
+                        <div class="export-option">
+                            <div class="export-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Financial Data</div>
+                                <div style="font-size: 12px; color: var(--gray);">Export revenue and payment data</div>
+                            </div>
+                        </div>
+                        <div class="export-option">
+                            <div class="export-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Reports Data</div>
+                                <div style="font-size: 12px; color: var(--gray);">Export user reports and issues</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // User Growth Chart
+            const userGrowthCtx = document.getElementById('userGrowthChart').getContext('2d');
+            const userGrowthChart = new Chart(userGrowthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'New Users',
+                            data: [1200, 1900, 1500, 2200, 1800, 2500, 3000, 2800, 3200, 3500, 3800, 4200],
+                            borderColor: '#6c63ff',
+                            backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Active Users',
+                            data: [800, 1200, 1000, 1500, 1300, 1800, 2200, 2000, 2400, 2700, 3000, 3300],
+                            borderColor: '#ff4b91',
+                            backgroundColor: 'rgba(255, 75, 145, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Subscription Chart
+            const subscriptionCtx = document.getElementById('subscriptionChart').getContext('2d');
+            const subscriptionChart = new Chart(subscriptionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Female VIP', 'Male VIP', 'Female Regular', 'Male Regular'],
+                    datasets: [{
+                        data: [45, 35, 12, 8],
+                        backgroundColor: [
+                            '#ff4b91',
+                            '#6c63ff',
+                            '#ff93c0',
+                            '#a29dff'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: [28500, 35200, 41800, 48500],
+                        backgroundColor: [
+                            'rgba(108, 99, 255, 0.7)',
+                            'rgba(108, 99, 255, 0.7)',
+                            'rgba(108, 99, 255, 0.7)',
+                            'rgba(108, 99, 255, 0.7)'
+                        ],
+                        borderColor: [
+                            '#6c63ff',
+                            '#6c63ff',
+                            '#6c63ff',
+                            '#6c63ff'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            // Demographics Chart
+            const demographicsCtx = document.getElementById('demographicsChart').getContext('2d');
+            const demographicsChart = new Chart(demographicsCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['North America', 'Europe', 'Asia', 'South America', 'Australia', 'Africa'],
+                    datasets: [{
+                        data: [35, 25, 20, 10, 5, 5],
+                        backgroundColor: [
+                            'rgba(108, 99, 255, 0.7)',
+                            'rgba(255, 75, 145, 0.7)',
+                            'rgba(40, 167, 69, 0.7)',
+                            'rgba(255, 193, 7, 0.7)',
+                            'rgba(23, 162, 184, 0.7)',
+                            'rgba(220, 53, 69, 0.7)'
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
