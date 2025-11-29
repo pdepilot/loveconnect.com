@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulConnect - Find Your Perfect Match</title>
+    <title>SoulConnect - Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/login.css">
@@ -17,18 +17,18 @@
                     <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
                 </div>
                 <div class="auth-left-content">
-                    <h1>Find Your Perfect Match</h1>
-                    <p>Join thousands of singles finding love through our intelligent matching system.</p>
+                    <h1>Welcome Back!</h1>
+                    <p>Continue your journey to find your perfect match.</p>
                     <ul class="auth-features">
-                        <li><i class="fas fa-check"></i> Location-based matching</li>
-                        <li><i class="fas fa-check"></i> Interest compatibility</li>
-                        <li><i class="fas fa-check"></i> Real-time chat</li>
-                        <li><i class="fas fa-check"></i> Secure & private</li>
+                        <li><i class="fas fa-check"></i> Intelligent matching</li>
+                        <li><i class="fas fa-check"></i> Secure messaging</li>
+                        <li><i class="fas fa-check"></i> Verified profiles</li>
+                        <li><i class="fas fa-check"></i> Real connections</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Right Side - Forms -->
+            <!-- Right Side - Login Form -->
             <div class="auth-right">
                 <div class="particles" id="particles"></div>
                 <div class="auth-form-container">
@@ -37,10 +37,9 @@
                         SoulConnect
                     </div>
 
-                    <!-- Tabs -->
-                    <div class="auth-tabs">
-                        <div class="auth-tab active" data-tab="login">Log In</div>
-                        <div class="auth-tab" data-tab="register">Sign Up</div>
+                    <div class="auth-header">
+                        <h2>Log In to Your Account</h2>
+                        <p>Enter your credentials to continue</p>
                     </div>
 
                     <!-- Success Message -->
@@ -49,7 +48,7 @@
                     </div>
 
                     <!-- Login Form -->
-                    <form class="auth-form active" id="loginForm">
+                    <form class="auth-form" id="loginForm">
                         <div class="form-group">
                             <label for="loginEmail">Email Address</label>
                             <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email" required>
@@ -81,73 +80,7 @@
                         </div>
 
                         <div class="auth-footer">
-                            Don't have an account? <a href="#" id="showRegister">Sign up here</a>
-                        </div>
-                    </form>
-
-                    <!-- Registration Form -->
-                    <form class="auth-form" id="registerForm">
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerEmail">Email Address</label>
-                            <input type="email" class="form-control" id="registerEmail" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneNumber">Phone Number</label>
-                            <div class="phone-input-container">
-                                <select class="country-code" id="countryCode">
-                                    <option value="+1">+1</option>
-                                    <option value="+44">+44</option>
-                                    <option value="+91">+91</option>
-                                    <option value="+61">+61</option>
-                                    <option value="+86">+86</option>
-                                </select>
-                                <input type="tel" class="form-control phone-input" id="phoneNumber" placeholder="Enter your phone number" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="age">Age</label>
-                            <div class="age-selector">
-                                <span class="age-display" id="ageDisplay">25</span>
-                                <input type="range" class="age-slider" id="age" min="18" max="80" value="25">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="registerPassword">Password</label>
-                            <input type="password" class="form-control" id="registerPassword" placeholder="Create a password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
-                            <label class="form-check-label" for="agreeTerms">
-                                I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Create Account</button>
-
-                        <div class="auth-divider">
-                            <span>Or continue with</span>
-                        </div>
-
-                        <div class="social-auth">
-                            <div class="social-btn facebook">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
-                            </div>
-                            <div class="social-btn google">
-                                <i class="fab fa-google"></i>
-                                <span>Google</span>
-                            </div>
-                        </div>
-
-                        <div class="auth-footer">
-                            Already have an account? <a href="#" id="showLogin">Log in here</a>
+                            Don't have an account? <a href="signup.html">Sign up here</a>
                         </div>
                     </form>
                 </div>
@@ -155,44 +88,6 @@
         </div>
     </div>
 
-    <!-- Biometric Verification Modal -->
-    <div class="verification-modal" id="verificationModal">
-        <div class="verification-content">
-            <div class="verification-header">
-                <h2>Verify Your Identity</h2>
-                <p>Complete face verification to secure your account</p>
-            </div>
-            
-            <div id="faceVerification" class="verification-method active">
-                <div class="verification-status status-positioning" id="faceStatus">
-                    <i class="fas fa-info-circle"></i> <span id="statusText">Position your face in the circle</span>
-                </div>
-                <div class="camera-container">
-                    <video id="videoElement" autoplay playsinline></video>
-                    <canvas id="canvasElement" style="display: none;"></canvas>
-                    <img id="capturedImage" class="captured-image" alt="Captured face">
-                    <div class="face-guide"></div>
-                    <div class="camera-overlay" id="cameraOverlay">
-                        <div id="countdownText" style="font-size: 48px; font-weight: bold;"></div>
-                    </div>
-                </div>
-                <p id="faceInstructions">Position your face in the circle and ensure good lighting</p>
-                
-                <div class="verification-actions" id="faceActions">
-                    <button class="btn btn-outline" id="retakePhoto">Retake</button>
-                    <button class="btn btn-primary" id="usePhoto">Use This Photo</button>
-                </div>
-            </div>
-            
-            <div class="verification-actions" id="verificationActions">
-                <button class="btn btn-secondary" id="cancelVerification">Cancel</button>
-                <button class="btn btn-primary" id="verifyIdentity">Verify</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="./js/login.js">
-
-    </script>
+    <script src="./js/login.js"></script>
 </body>
 </html>

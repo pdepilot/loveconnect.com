@@ -502,6 +502,14 @@ nav {
   padding: 30px;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.feature-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .feature-card:hover {
@@ -562,6 +570,14 @@ nav {
   position: relative;
   z-index: 2;
   flex: 1;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.step.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .step-number {
@@ -598,6 +614,14 @@ nav {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   max-width: 600px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cta-section.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .cta-section h3 {
@@ -627,6 +651,14 @@ nav {
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.testimonial-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .testimonial-content {
@@ -685,6 +717,14 @@ nav {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   position: relative;
   transition: transform 0.3s;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.pricing-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .pricing-card:hover {
@@ -778,6 +818,14 @@ nav {
   border: 1px solid #eee;
   border-radius: 10px;
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.faq-item.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .faq-question {
@@ -936,15 +984,15 @@ footer {
     left: 5%;
     right: 5%;
   }
-  
+
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .pricing-card.featured {
     transform: none;
   }
-  
+
   .pricing-card.featured:hover {
     transform: translateY(-10px);
   }
@@ -976,21 +1024,21 @@ footer {
   .hero-btn {
     width: 250px;
   }
-  
+
   .hero-stats {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .trust-logos {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .logos {
     justify-content: center;
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
@@ -1027,7 +1075,7 @@ footer {
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  
+
   .pricing-grid {
     grid-template-columns: 1fr;
   }
@@ -1077,11 +1125,11 @@ footer {
   .loading-text {
     font-size: 20px;
   }
-  
+
   .final-cta {
     padding: 60px 0;
   }
-  
+
   .cta-content h2 {
     font-size: 28px;
   }
@@ -1116,11 +1164,11 @@ footer {
   .footer-column h3 {
     font-size: 16px;
   }
-  
+
   .pricing-card {
     padding: 20px;
   }
-  
+
   .price {
     font-size: 36px;
   }

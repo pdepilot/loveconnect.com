@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulConnect - Pricing & Subscription Tiers</title>
+    <title>SoulConnect - Pricing & Subscriptions</title>
+    <meta name="description" content="Choose the perfect SoulConnect plan for your dating journey. Find the right subscription for your needs and budget.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/pricing.css">
+    <link rel="stylesheet" href="css/pricing.css">
 </head>
 <body>
     <!-- Header -->
@@ -21,244 +22,186 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="index.html#how-it-works">How It Works</a></li>
                     <li><a href="index.html#success-stories">Success Stories</a></li>
-                    <li><a href="#" class="active">Pricing</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
                 </ul>
                 <div class="auth-buttons">
                     <a href="login.html" class="btn btn-outline">Log In</a>
-                    <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    <a href="login.html" class="btn btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="pricing-hero">
-        <div class="container">
-            <h1>Simple, Transparent Pricing</h1>
-            <p>Choose the subscription plan that works best for you. All plans include our core matching features with different levels of visibility and communication access.</p>
-        </div>
-    </section>
-
-    <!-- Tabs -->
-    <div class="container">
-        <div class="tabs">
-            <button class="tab-button active" data-tab="female">Female Plans</button>
-            <button class="tab-button" data-tab="male">Male Plans</button>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#how-it-works">How It Works</a></li>
+            <li><a href="index.html#success-stories">Success Stories</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+        <div class="mobile-auth-buttons">
+            <a href="login.html" class="btn btn-outline">Log In</a>
+            <a href="login.html" class="btn btn-primary">Sign Up</a>
         </div>
     </div>
 
-    <!-- Female Pricing Section -->
-    <section class="pricing-section" id="female-plans">
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Simple, Transparent Pricing</h1>
+            <p>Choose the perfect plan for your dating journey. Find the right subscription for your needs and budget.</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
         <div class="container">
             <div class="section-title">
-                <h2>Female Subscription Plans</h2>
-                <p>Choose the level of visibility and communication that fits your needs</p>
+                <h2>Choose Your Plan</h2>
+                <p>Select the subscription that matches your dating goals and preferences</p>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card female-vip featured">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Female VIP</h3>
-                        <div class="price">$29.99<span>/month</span></div>
-                        <p>Maximum visibility and unlimited connections</p>
+            
+            <div class="gender-tabs">
+                <div class="gender-tab active" data-gender="female">For Women</div>
+                <div class="gender-tab" data-gender="male">For Men</div>
+            </div>
+            
+            <!-- Female Pricing -->
+            <div class="pricing-content" id="female-pricing">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Female Regular</h3>
+                            <div class="price">$0<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Create a complete profile</li>
+                            <li><i class="fas fa-check"></i> Browse potential matches</li>
+                            <li><i class="fas fa-check"></i> Message up to 30 people per month</li>
+                            <li><i class="fas fa-times"></i> Appear on Discover Page</li>
+                            <li><i class="fas fa-times"></i> Unlimited messaging</li>
+                            <li><i class="fas fa-times"></i> Chat with all Male users</li>
+                        </ul>
+                        <a href="signup.html" class="btn btn-outline">Get Started</a>
                     </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Appears on the Discover Page for maximum visibility</li>
-                            <li><i class="fas fa-check"></i> Unlimited swipes and unlimited messaging</li>
-                            <li><i class="fas fa-check"></i> Can chat with both Regular and VIP Male users</li>
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Female VIP</h3>
+                            <div class="price">$19.99<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> All Regular features</li>
+                            <li><i class="fas fa-check"></i> Appear on Discover Page</li>
+                            <li><i class="fas fa-check"></i> Unlimited swipes & messaging</li>
+                            <li><i class="fas fa-check"></i> Chat with all Male users</li>
                             <li><i class="fas fa-check"></i> Priority customer support</li>
-                            <li><i class="fas fa-check"></i> See who liked your profile</li>
                             <li><i class="fas fa-check"></i> Advanced matching filters</li>
                         </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="login.html?plan=female-vip" class="btn btn-primary">Get VIP Access</a>
+                        <a href="signup.html" class="btn btn-primary">Get VIP</a>
                     </div>
                 </div>
-                
-                <div class="pricing-card female-regular">
-                    <div class="pricing-header">
-                        <h3>Female Regular</h3>
-                        <div class="price">$0<span>/month</span></div>
-                        <p>Basic features to get started</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Can message up to 30 people per month</li>
-                            <li><i class="fas fa-times"></i> Does not appear on the Discover Page</li>
-                            <li><i class="fas fa-info-circle"></i> Limited chat access with Male users</li>
-                            <li><i class="fas fa-check"></i> Basic matching algorithm</li>
-                            <li><i class="fas fa-times"></i> Cannot see who liked your profile</li>
-                            <li><i class="fas fa-times"></i> Standard customer support</li>
+            </div>
+            
+            <!-- Male Pricing -->
+            <div class="pricing-content" id="male-pricing" style="display: none;">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Male Regular</h3>
+                            <div class="price">$0<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Create a complete profile</li>
+                            <li><i class="fas fa-check"></i> Browse potential matches</li>
+                            <li><i class="fas fa-check"></i> Message up to 30 people per month</li>
+                            <li><i class="fas fa-times"></i> Unlimited messaging</li>
+                            <li><i class="fas fa-times"></i> View all categories of subscribers</li>
+                            <li><i class="fas fa-times"></i> Chat with VIP Female users</li>
                         </ul>
+                        <a href="signup.html" class="btn btn-outline">Get Started</a>
                     </div>
-                    <div class="pricing-footer">
-                        <a href="login.html?plan=female-regular" class="btn btn-outline">Start for Free</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Male Pricing Section -->
-    <section class="pricing-section" id="male-plans" style="display: none;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Male Subscription Plans</h2>
-                <p>Choose the level of visibility and communication that fits your needs</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card male-vip featured">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Male VIP</h3>
-                        <div class="price">$39.99<span>/month</span></div>
-                        <p>Maximum visibility and unlimited connections</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Unlimited swipes and unlimited messaging</li>
-                            <li><i class="fas fa-check"></i> Can view all categories of subscribers (male & female)</li>
-                            <li><i class="fas fa-check"></i> Can chat with VIP Female subscribers</li>
-                            <li><i class="fas fa-info-circle"></i> Female Regular can reach out only if they message first</li>
+                    <div class="pricing-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Male VIP</h3>
+                            <div class="price">$29.99<span>/month</span></div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> All Regular features</li>
+                            <li><i class="fas fa-check"></i> Unlimited swipes & messaging</li>
+                            <li><i class="fas fa-check"></i> View all categories of subscribers</li>
+                            <li><i class="fas fa-check"></i> Chat with VIP Female users</li>
                             <li><i class="fas fa-check"></i> Priority customer support</li>
-                            <li><i class="fas fa-check"></i> See who liked your profile</li>
+                            <li><i class="fas fa-check"></i> Advanced matching filters</li>
                         </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="login.html?plan=male-vip" class="btn btn-primary">Get VIP Access</a>
-                    </div>
-                </div>
-                
-                <div class="pricing-card male-regular">
-                    <div class="pricing-header">
-                        <h3>Male Regular</h3>
-                        <div class="price">$0<span>/month</span></div>
-                        <p>Basic features to get started</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Can message up to 30 people per month</li>
-                            <li><i class="fas fa-times"></i> Limited visibility on the platform</li>
-                            <li><i class="fas fa-info-circle"></i> Limited chat access with Female users</li>
-                            <li><i class="fas fa-check"></i> Basic matching algorithm</li>
-                            <li><i class="fas fa-times"></i> Cannot see who liked your profile</li>
-                            <li><i class="fas fa-times"></i> Standard customer support</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        <a href="login.html?plan=male-regular" class="btn btn-outline">Start for Free</a>
+                        <a href="signup.html" class="btn btn-primary">Get VIP</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <section class="comparison-section">
+    <!-- Looking For Section -->
+    <section class="looking-for">
         <div class="container">
             <div class="section-title">
-                <h2>Plan Comparison</h2>
-                <p>See how our subscription tiers compare across all user types</p>
+                <h2>Define Your Dating Goals</h2>
+                <p>Choose what you're looking for to help us find better matches for you</p>
             </div>
-            <div class="comparison-table">
-                <div class="comparison-header">
-                    <div>Features</div>
-                    <div>Female VIP</div>
-                    <div>Female Regular</div>
-                    <div>Male VIP</div>
-                    <div>Male Regular</div>
+            <div class="looking-for-grid">
+                <div class="looking-for-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Ready for a Relationship</h3>
+                    <p>Looking for a committed, long-term partnership</p>
                 </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Monthly Price</div>
-                    <div>$29.99</div>
-                    <div>Free</div>
-                    <div>$39.99</div>
-                    <div>Free</div>
+                <div class="looking-for-card">
+                    <i class="fas fa-comments"></i>
+                    <h3>Open to Chat</h3>
+                    <p>Interested in getting to know people and see where it leads</p>
                 </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Appears on Discover Page</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
+                <div class="looking-for-card">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Here to Date</h3>
+                    <p>Want to go on dates and explore romantic connections</p>
                 </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Unlimited Swipes</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
+                <div class="looking-for-card">
+                    <i class="fas fa-ring"></i>
+                    <h3>Long-Term Connection</h3>
+                    <p>Seeking a serious relationship with potential for the future</p>
                 </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Unlimited Messaging</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Message Limit</div>
-                    <div>Unlimited</div>
-                    <div>30/month</div>
-                    <div>Unlimited</div>
-                    <div>30/month</div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Chat with VIP Users</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-info"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Chat with Regular Users</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-info"></i></div>
-                    <div><i class="fas fa-info"></i></div>
-                    <div><i class="fas fa-info"></i></div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">See Who Liked You</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Advanced Filters</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                </div>
-                <div class="comparison-row">
-                    <div class="feature-name">Priority Support</div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
-                    <div><i class="fas fa-check"></i></div>
-                    <div><i class="fas fa-times"></i></div>
+                <div class="looking-for-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Short-Term Interaction</h3>
+                    <p>Interested in casual dating without long-term commitment</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="faq-section">
+    <section class="faq">
         <div class="container">
             <div class="section-title">
                 <h2>Frequently Asked Questions</h2>
-                <p>Get answers to common questions about our subscription plans</p>
+                <p>Get answers to common questions about our pricing and subscriptions</p>
             </div>
             <div class="faq-grid">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h3>Why are there different pricing tiers for males and females?</h3>
+                        <h3>Why are there different pricing tiers for men and women?</h3>
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Our pricing structure is designed to create a balanced user experience. Typically, dating platforms have more male users, so we've structured our pricing to encourage more female participation while providing value for all users regardless of gender.</p>
+                        <p>Our pricing structure is designed to create a balanced user experience. Female users typically receive more attention on dating platforms, so our pricing reflects this dynamic while ensuring everyone has access to features that match their dating goals.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -267,7 +210,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, you can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to the new features. When downgrading, the changes will take effect at the start of your next billing cycle.</p>
+                        <p>Yes, you can upgrade or downgrade your plan at any time. If you upgrade, you'll immediately gain access to the new features. If you downgrade, the changes will take effect at the start of your next billing cycle.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -276,7 +219,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and in some regions, Apple Pay and Google Pay.</p>
+                        <p>We accept all major credit cards, PayPal, and Apple Pay for your convenience. All payments are processed securely through encrypted channels.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -285,7 +228,7 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>We occasionally offer free trials for our VIP plans during promotional periods. Check our website or subscribe to our newsletter to stay informed about current promotions.</p>
+                        <p>We occasionally offer free trials for our VIP plans during promotional periods. Check our website or subscribe to our newsletter to stay updated on current offers.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -294,22 +237,22 @@
                         <i class="fas fa-chevron-down"></i>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access to your paid features until the end of your current billing period.</p>
+                        <p>Yes, you can cancel your subscription at any time from your account settings. If you cancel, you'll continue to have access to your VIP features until the end of your current billing period.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
+    <!-- Final CTA Section -->
+    <section class="final-cta">
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Find Your Perfect Match?</h2>
-                <p>Join SoulConnect today and start your journey to finding meaningful connections</p>
+                <p>Join thousands of singles who have found love through SoulConnect</p>
                 <div class="cta-buttons">
-                    <a href="login.html" class="btn btn-primary" style="background: white; color: var(--primary);">Sign Up Now</a>
-                    <a href="index.html" class="btn btn-outline" style="border-color: white; color: white;">Learn More</a>
+                    <a href="signup.html" class="btn btn-primary">Sign Up Now</a>
+                    <a href="index.html" class="btn btn-outline">Learn More</a>
                 </div>
             </div>
         </div>
@@ -335,7 +278,8 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="index.html#how-it-works">How It Works</a></li>
                         <li><a href="index.html#success-stories">Success Stories</a></li>
-                        <li><a href="#">Pricing</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -361,37 +305,55 @@
                 </div>
             </div>
             <div class="copyright">
-                &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS Tech.
+                &copy; 2023 SoulConnect. All rights reserved | Developed by ERIBS tech .
             </div>
         </div>
     </footer>
 
     <script>
-        // Tab functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const femaleSection = document.getElementById('female-plans');
-            const maleSection = document.getElementById('male-plans');
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const genderTabs = document.querySelectorAll('.gender-tab');
+            const femalePricing = document.getElementById('female-pricing');
+            const malePricing = document.getElementById('male-pricing');
             
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
+            // Hamburger menu functionality
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mobileNav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                });
+            });
+
+            // Gender tab functionality
+            genderTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    genderTabs.forEach(t => t.classList.remove('active'));
                     
-                    // Add active class to clicked button
+                    // Add active class to clicked tab
                     this.classList.add('active');
                     
-                    // Show/hide sections based on tab
-                    if (this.dataset.tab === 'female') {
-                        femaleSection.style.display = 'block';
-                        maleSection.style.display = 'none';
+                    // Show corresponding pricing
+                    const gender = this.getAttribute('data-gender');
+                    if (gender === 'female') {
+                        femalePricing.style.display = 'block';
+                        malePricing.style.display = 'none';
                     } else {
-                        femaleSection.style.display = 'none';
-                        maleSection.style.display = 'block';
+                        femalePricing.style.display = 'none';
+                        malePricing.style.display = 'block';
                     }
                 });
             });
-            
+
             // FAQ accordion functionality
             const faqQuestions = document.querySelectorAll('.faq-question');
             faqQuestions.forEach(question => {
@@ -420,6 +382,26 @@
                     });
                 });
             });
+
+            // Scroll reveal functionality
+            function revealOnScroll() {
+                const elements = document.querySelectorAll('.pricing-card, .faq-item');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('reveal');
+                    }
+                });
+            }
+            
+            // Initial check for elements in viewport
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
         });
     </script>
 </body>

@@ -7,8 +7,7 @@
     <meta name="description" content="SoulConnect - Find meaningful connections through intelligent matching and shared interests. Join thousands of singles finding love today.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
-   
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <!-- Preloader -->
@@ -44,7 +43,7 @@
                     </ul>
                     <div class="auth-buttons">
                         <a href="login.html" class="btn btn-outline">Log In</a>
-                        <a href="login.html" class="btn btn-primary">Sign Up</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
                     </div>
                     <div class="hamburger" id="hamburger">
                         <span></span>
@@ -543,6 +542,26 @@
                     }
                 });
             });
+
+            // Scroll reveal functionality
+            function revealOnScroll() {
+                const elements = document.querySelectorAll('.feature-card, .step, .cta-section, .testimonial-card, .pricing-card, .faq-item');
+                
+                elements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('reveal');
+                    }
+                });
+            }
+            
+            // Initial check for elements in viewport
+            revealOnScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', revealOnScroll);
         });
     </script>
 </body>
