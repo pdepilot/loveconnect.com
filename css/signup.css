@@ -224,22 +224,30 @@ body {
 
 .form-check {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .form-check-input {
   margin-right: 10px;
+  margin-top: 4px;
 }
 
 .form-check-label {
   font-size: 14px;
   color: var(--gray);
+  line-height: 1.5;
 }
 
 .form-check-label a {
   color: var(--primary);
   text-decoration: none;
+  font-weight: 600;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline;
 }
 
 .btn {
@@ -451,6 +459,7 @@ body {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+  padding: 20px;
 }
 
 .verification-modal.active {
@@ -462,12 +471,14 @@ body {
   background: white;
   border-radius: 20px;
   padding: 30px;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   text-align: center;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
   transform: scale(0.9);
   transition: transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .verification-modal.active .verification-content {
@@ -518,7 +529,8 @@ body {
 }
 
 .camera-container {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 300px;
   margin: 0 auto 20px;
   position: relative;
@@ -583,10 +595,12 @@ body {
   display: flex;
   gap: 10px;
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .verification-actions .btn {
   flex: 1;
+  min-width: 120px;
 }
 
 .verification-status {
@@ -729,6 +743,7 @@ body {
   gap: 10px;
   justify-content: center;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .code-input {
@@ -867,6 +882,7 @@ body {
   justify-content: center;
   margin: 10px 0;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .brightness-bar {
@@ -910,6 +926,219 @@ body {
   color: var(--danger);
   font-weight: 500;
   display: none;
+}
+
+/* Photo Upload Styles */
+.photo-upload {
+  position: relative;
+  border: 2px dashed #e1e1e1;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #f8f9fa;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.photo-upload:hover {
+  border-color: var(--primary);
+  background: #fff5f9;
+}
+
+.photo-upload.has-image {
+  border-color: var(--success);
+  background: #f8fff9;
+}
+
+.photo-upload input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.upload-text i {
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.file-name {
+  font-size: 12px;
+  color: var(--success);
+  font-weight: 500;
+  margin-top: 5px;
+  display: none;
+}
+
+.upload-success {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  color: var(--success);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.upload-success i {
+  font-size: 16px;
+}
+
+/* Interests Checkboxes */
+.interests-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.interest-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 2px solid #e1e1e1;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+  position: relative;
+}
+
+.interest-option:hover {
+  border-color: var(--primary);
+  background: #fff5f9;
+}
+
+.interest-option input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.interest-option .checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #e1e1e1;
+  border-radius: 4px;
+  margin-right: 8px;
+  position: relative;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.interest-option input[type="checkbox"]:checked + .checkbox-custom {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.interest-option input[type="checkbox"]:checked + .checkbox-custom::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 12px;
+  color: white;
+}
+
+.interest-option input[type="checkbox"]:checked ~ .interest-label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.selected-interests-count {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-top: 8px;
+  text-align: center;
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'><path fill='%236c757d' d='M2 0L0 2h4zm0 5L0 3h4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+.upload-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.remove-photo {
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Terms and Conditions Styling */
+.terms-container {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #e1e1e1;
+}
+
+.terms-content {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.terms-content h4 {
+  color: var(--dark);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.terms-content p {
+  margin-bottom: 10px;
+}
+
+.terms-content ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.terms-content li {
+  margin-bottom: 5px;
 }
 
 /* Animation Keyframes */
@@ -1040,6 +1269,14 @@ body {
   .verification-content {
     padding: 20px;
   }
+
+  .verification-actions {
+    flex-direction: column;
+  }
+
+  .interests-checkboxes {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -1091,6 +1328,21 @@ body {
   .brightness-bar {
     width: 120px;
   }
+
+  .country-code {
+    width: 70px;
+    font-size: 14px;
+  }
+
+  .interests-checkboxes {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 8px;
+  }
+
+  .interest-option {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -1128,6 +1380,10 @@ body {
   .face-guide {
     width: 110px;
     height: 140px;
+  }
+
+  .interests-checkboxes {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -1182,4 +1438,36 @@ body {
     width: 150px;
     height: 150px;
   }
+
+  .verification-content {
+    max-height: 85vh;
+  }
+}
+
+/* Ensure buttons are always visible */
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.auth-step.active {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.auth-footer {
+  margin-top: auto;
 }

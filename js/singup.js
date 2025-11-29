@@ -55,6 +55,31 @@ document.addEventListener("DOMContentLoaded", function () {
   const brightnessWarning = document.getElementById("brightnessWarning");
   const multipleFacesWarning = document.getElementById("multipleFacesWarning");
 
+  // New elements for enhanced features
+  const showTermsLink = document.getElementById("showTerms");
+  const showPrivacyLink = document.getElementById("showPrivacy");
+  const termsContainer = document.getElementById("termsContainer");
+  const photoUploads = [
+    {
+      container: document.getElementById("photoUpload1"),
+      success: document.getElementById("uploadSuccess1"),
+    },
+    {
+      container: document.getElementById("photoUpload2"),
+      success: document.getElementById("uploadSuccess2"),
+    },
+    {
+      container: document.getElementById("photoUpload3"),
+      success: document.getElementById("uploadSuccess3"),
+    },
+  ];
+  const interestCheckboxes = document.querySelectorAll(
+    'input[name="interests[]"]'
+  );
+  const selectedInterestsCount = document.getElementById(
+    "selectedInterestsCount"
+  );
+
   // State
   let currentStep = 1;
   let verificationCode = "";
@@ -76,6 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize
   updateProgressBar();
   setupCodeInputs();
+  setupPhotoUploads();
+  setupTermsAndPrivacy();
+  setupInterestsTracking();
 
   // Step Navigation
   function goToStep(step) {
@@ -243,6 +271,79 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Photo Upload Handling
+  function setupPhotoUploads() {
+    photoUploads.forEach((upload, index) => {
+      const fileInput = upload.container.querySelector('input[type="file"]');
+
+      fileInput.addEventListener("change", function (e) {
+        if (this.files && this.files[0]) {
+          // Show success message
+          upload.success.style.display = "flex";
+          upload.container.classList.add("has-image");
+
+          // Change upload text to show file name
+          const uploadText =
+            upload.container.querySelector(".upload-text span");
+          uploadText.textContent = this.files[0].name;
+
+          // Add animation for visual feedback
+          upload.container.style.animation = "pulse 0.5s ease";
+          setTimeout(() => {
+            upload.container.style.animation = "";
+          }, 500);
+        }
+      });
+    });
+  }
+
+  // Terms and Privacy Handling
+  function setupTermsAndPrivacy() {
+    let termsVisible = false;
+
+    showTermsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      termsVisible = !termsVisible;
+      termsContainer.style.display = termsVisible ? "block" : "none";
+    });
+
+    showPrivacyLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      termsVisible = !termsVisible;
+      termsContainer.style.display = termsVisible ? "block" : "none";
+    });
+  }
+
+  // Interests Tracking
+  function setupInterestsTracking() {
+    interestCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", updateSelectedInterestsCount);
+    });
+
+    // Initialize count
+    updateSelectedInterestsCount();
+  }
+
+  function updateSelectedInterestsCount() {
+    const selectedCount = Array.from(interestCheckboxes).filter(
+      (cb) => cb.checked
+    ).length;
+
+    if (selectedCount === 0) {
+      selectedInterestsCount.textContent =
+        "Select at least 3 interests for better matching";
+      selectedInterestsCount.style.color = "var(--gray)";
+    } else if (selectedCount < 3) {
+      selectedInterestsCount.textContent = `${selectedCount} selected - select ${
+        3 - selectedCount
+      } more for better matching`;
+      selectedInterestsCount.style.color = "var(--warning)";
+    } else {
+      selectedInterestsCount.textContent = `${selectedCount} interests selected - great for matching!`;
+      selectedInterestsCount.style.color = "var(--success)";
+    }
+  }
+
   // Form Submissions
   phoneVerificationForm.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -314,6 +415,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (password !== confirmPassword) {
       showError("Passwords do not match!");
+      return;
+    }
+
+    // Check if at least 3 interests are selected
+    const selectedInterests = Array.from(interestCheckboxes).filter(
+      (cb) => cb.checked
+    ).length;
+    if (selectedInterests < 3) {
+      showError("Please select at least 3 interests for better matching");
       return;
     }
 
